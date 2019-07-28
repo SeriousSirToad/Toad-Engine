@@ -24,12 +24,26 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 
 	public class Key {
 
+		private boolean hasBeenPressed = false;
+		
 		private boolean isPressed = false;
 
 		public boolean isPressed() {
 
 			return isPressed;
 
+		}
+		
+		public boolean pressedAndReleased() {
+			boolean released = false;
+			if(isPressed()) {
+				hasBeenPressed = true;
+			}
+			if(hasBeenPressed && !isPressed()) {
+				released = true;
+				hasBeenPressed = false;
+			}
+			return released;
 		}
 
 		public void toggle(boolean b) {
@@ -57,6 +71,8 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 	public Key NUM_1 = new Key();
 	public Key NUM_2 = new Key();
 	public Key NUM_3 = new Key();
+	public Key NUM_4 = new Key();
+	public Key NUM_5 = new Key();
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -106,6 +122,18 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 		if (e.getKeyCode() == KeyEvent.VK_3) {
 
 			NUM_3.toggle(true);
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_4) {
+
+			NUM_4.toggle(true);
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_5) {
+
+			NUM_5.toggle(true);
 
 		}
 
@@ -213,6 +241,18 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 		if (e.getKeyCode() == KeyEvent.VK_3) {
 
 			NUM_3.toggle(false);
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_4) {
+
+			NUM_4.toggle(false);
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_5) {
+
+			NUM_5.toggle(false);
 
 		}
 

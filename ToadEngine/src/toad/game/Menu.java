@@ -23,7 +23,7 @@ public class Menu {
 
 	public Menu() {
 		try {
-			menuImage = ImageIO.read(new File("res/titleScreen.png"));
+			menuImage = ImageIO.read(new File("src/res/titleScreen.png"));
 		} catch (IOException e) {
 			System.out.println("bruh moment has occured");
 		}

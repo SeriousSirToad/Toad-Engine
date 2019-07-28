@@ -14,6 +14,8 @@ import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
 import toad.game.entities.Player;
+import toad.ui.GameButton;
+import toad.ui.GameWindow;
 
 public abstract class Level {
 
@@ -30,6 +32,8 @@ public abstract class Level {
 	protected int width = 0;
 	protected int height = 0;
 
+	private GameWindow welcome = new GameWindow(Main.width(), Main.height(), 0xFF000000, new GameButton[] {new GameButton(0, 0)});
+	
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
 
 		@Override
@@ -41,6 +45,13 @@ public abstract class Level {
 	};
 
 	public void tick() {
+		
+		if (!initialized) {
+			init();
+			initialized = true;
+			return;
+		}
+		
 		for (Door d : doors) {
 			d.tick();
 		}
@@ -48,10 +59,7 @@ public abstract class Level {
 			Entity e = entities.get(i);
 			e.tick();
 		}
-		if (!initialized) {
-			init();
-			initialized = true;
-		}
+		
 	}
 
 	public void render() {
