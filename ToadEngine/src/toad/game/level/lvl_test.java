@@ -6,7 +6,7 @@ public class lvl_test extends Level {
 
 
 	public lvl_test() {
-		super("src/res/level/lvl_test.png");
+		super("/images/level/lvl_test.png");
 	}
 
 	public void init() {

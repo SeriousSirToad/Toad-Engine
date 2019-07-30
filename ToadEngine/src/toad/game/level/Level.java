@@ -3,8 +3,8 @@ package toad.game.level;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -32,8 +32,9 @@ public abstract class Level {
 	protected int width = 0;
 	protected int height = 0;
 
-	private GameWindow welcome = new GameWindow(Main.width(), Main.height(), 0xFF000000, new GameButton[] {new GameButton(0, 0)});
-	
+	private GameWindow welcome = new GameWindow(Main.width(), Main.height(), 0xFF000000,
+			new GameButton[] { new GameButton(0, 0) });
+
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
 
 		@Override
@@ -45,13 +46,13 @@ public abstract class Level {
 	};
 
 	public void tick() {
-		
+
 		if (!initialized) {
 			init();
 			initialized = true;
 			return;
 		}
-		
+
 		for (Door d : doors) {
 			d.tick();
 		}
@@ -59,7 +60,7 @@ public abstract class Level {
 			Entity e = entities.get(i);
 			e.tick();
 		}
-		
+
 	}
 
 	public void render() {
@@ -72,8 +73,10 @@ public abstract class Level {
 	}
 
 	public Level(String imagePath) {
+		URL path = getClass().getResource(imagePath);
+		System.out.println(path);
 		try {
-			image = ImageIO.read(new File(imagePath));
+			image = ImageIO.read(getClass().getResource(imagePath));
 			width = image.getWidth();
 			height = image.getHeight();
 		} catch (IOException e) {

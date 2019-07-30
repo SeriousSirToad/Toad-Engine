@@ -5,6 +5,8 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import javax.swing.JFrame;
 

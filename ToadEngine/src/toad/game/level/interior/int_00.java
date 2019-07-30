@@ -7,7 +7,7 @@ import toad.gfx.Assets;
 public class int_00 extends Level{
 
 	public int_00() {
-		super("src/res/interior/int_00.png");
+		super("/images/interior/int_00.png");
 	}
 
 	@Override

@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	static SpriteSheet entities = new SpriteSheet("src/res/ss_entity.png");
-	static SpriteSheet buildings = new SpriteSheet("src/res/ss_bldg.png");
+	static SpriteSheet entities = new SpriteSheet("/images/ss_entity.png");
+	static SpriteSheet buildings = new SpriteSheet("/images/ss_bldg.png");
 	// Mobs
 	public static final BufferedImage player = entities.getImage(0, 0, 16, 32);
 	public static final Animation pl_hz = new Animation(10, entities.getAnimation(16, 0, 16, 32, 4), false);
