@@ -81,7 +81,7 @@ public class Camera {
 	public boolean contains(int x, int y) {
 		if (x < this.x || y < this.y)
 			return false;
-		if (x > this.x + Main.width() || y > this.y + Main.height())
+		if (x > this.x + Main.WIDTH || y > this.y + Main.HEIGHT)
 			return false;
 		return true;
 	}

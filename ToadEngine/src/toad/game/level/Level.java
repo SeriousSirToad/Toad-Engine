@@ -14,8 +14,6 @@ import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
 import toad.game.entities.Player;
-import toad.ui.GameButton;
-import toad.ui.GameWindow;
 
 public abstract class Level {
 
@@ -30,10 +28,7 @@ public abstract class Level {
 	public static Level bean = new lvl_bean();
 	public static Level test = new lvl_test();
 	protected int width = 0;
-	protected int height = 0;
-
-	private GameWindow welcome = new GameWindow(Main.width(), Main.height(), 0xFF000000,
-			new GameButton[] { new GameButton(0, 0) });
+	protected int height = 0;	
 
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
 

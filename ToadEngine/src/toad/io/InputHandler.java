@@ -19,6 +19,8 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 		m.addKeyListener(this);
 		m.addMouseListener(this);
 		m.addMouseMotionListener(this);
+		//xy = "Mouse X: " + MouseX + ", Mouse Y: " + MouseY;
+		//InGameUI.addToRendOrder(xy);
 
 	}
 

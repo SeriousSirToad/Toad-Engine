@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
+
 import toad.game.Main;
 
 public class InGameUI {
@@ -13,11 +14,14 @@ public class InGameUI {
 	static int totalStringWidth = 0;
 
 	public static Font standardFont = new Font("Comic sans ms", Font.PLAIN, 5);
-	static FontMetrics fm = Main.g.getFontMetrics(standardFont);
+	static FontMetrics fm;
 
 	public static void render(int type, Graphics g) {
+		if (fm == null)
+			fm = Main.g.getFontMetrics(standardFont);
 		if (type == 0) {
-			for (GameWindow w : windows) {
+			for (int i = 0; i < windows.size(); i++) {
+				GameWindow w = windows.get(i);
 				w.update();
 			}
 		}
@@ -25,9 +29,9 @@ public class InGameUI {
 			totalStringWidth = 0;
 			for (int i = 0; i < strings.size(); i++) {
 				totalStringWidth += 3 + (strings.get(i).length() * fm.charWidth(0));
-				g.drawString(strings.get(i), totalStringWidth - strings.get(i).length() * fm.charWidth(0) - 3, standardFont.getSize());
+				g.drawString(strings.get(i), totalStringWidth - strings.get(i).length() * fm.charWidth(0) - 3,
+						standardFont.getSize());
 			}
-			g.drawString("" + strings.size(), 0, 50);
 		}
 	}
 
@@ -39,6 +43,10 @@ public class InGameUI {
 		strings.add(s);
 	}
 
+	public static void clearRenderOrder() {
+		windows.clear();
+	}
+	
 	public static void replaceRenderOrder(String s, String s2) {
 		strings.set(strings.indexOf(s), s2);
 	}
@@ -51,4 +59,8 @@ public class InGameUI {
 		strings.remove(s);
 	}
 
+	public boolean active() {
+		return windows.size() > 0;
+	}
+	
 }

@@ -5,8 +5,6 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import java.net.URL;
-import java.net.URLClassLoader;
 
 import javax.swing.JFrame;
 
@@ -42,25 +40,19 @@ public class Main extends Canvas implements Runnable {
 		frame.setTitle(NAME);
 		frame.setSize(gameDimension);
 		frame.setPreferredSize(gameDimension);
-		frame.setMinimumSize(gameDimension);
-		frame.setMaximumSize(gameDimension);
+		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
 		frame.setResizable(false);
-		frame.setUndecorated(false);
+		frame.setUndecorated(true);
+		frame.pack();
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-		frame.pack();
 
-		System.out.println(frame.getInsets().top + ", " + frame.getInsets().bottom);
 
 		input = new InputHandler(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		System.out.println(WIDTH + ", " + HEIGHT);
-		// SwingUtilities.invokeLater(this);
-
-		// frame.setLayout(null);
-		// con = frame.getContentPane();
 
 		menu = new Menu();
 
@@ -74,6 +66,7 @@ public class Main extends Canvas implements Runnable {
 	public void run() {
 		long lastTime = System.nanoTime();
 		double nsPerTick = 1000000000D / 60;
+		@SuppressWarnings("unused")
 		int ticks = 0;
 		float frames = 0;
 		long lastTimer = System.currentTimeMillis();
@@ -117,7 +110,6 @@ public class Main extends Canvas implements Runnable {
 				if (firstFPS) {
 					InGameUI.replaceRenderOrder("FPS: " + this.frames, "FPS: " + frames);
 				}
-				System.out.println(ticks + " ticks, " + frames + " frames");
 				this.frames = frames;
 				ticks = 0;
 				frames = 0;
@@ -134,7 +126,7 @@ public class Main extends Canvas implements Runnable {
 	public void tick() {
 
 		tickCount++;
-
+		
 		if (GameState.running) {
 			GameState.player.getLevel().tick();
 			GameState.camera.tick();
@@ -144,6 +136,11 @@ public class Main extends Canvas implements Runnable {
 					firstFPS = true;
 					InGameUI.addToRendOrder("FPS: " + frames);
 				}
+			}
+			
+			if(input.esc.isPressed()) {
+				GameState.running = false;
+				InGameUI.clearRenderOrder();
 			}
 
 		} else {
@@ -188,12 +185,14 @@ public class Main extends Canvas implements Runnable {
 		g = (Graphics2D) bs.getDrawGraphics();
 		// General Rendering
 
-		g.clearRect(0, 0, width(), width());
+		g.clearRect(0, 0, width(), height());
 		g.scale(GameState.renderScale, GameState.renderScale);
 		g.setFont(InGameUI.standardFont);
 		GameState.camera.render();
-		InGameUI.render(0, g);
-		InGameUI.render(1, g);
+		if(GameState.running) {
+			InGameUI.render(0, g);
+			InGameUI.render(1, g);
+		}
 
 		bs.show();
 		g.dispose();

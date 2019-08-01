@@ -1,6 +1,7 @@
 package toad.ui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -14,15 +15,21 @@ public class GameButton {
 	private Rectangle buttonRect;
 
 	private String text;
-
+	private Font font;
+	
 	public boolean hasBeenClicked = false;
 	public boolean attatchedToEntity = false;
 	protected boolean onThis = false;
 
 	public Color color;
+	Color mainColor = new Color(255, 255, 255);
+	
+	public boolean bordered = true;
+	
 	public int numTimesClicked;
 
-	public int x, y, width = 32, height = 16;
+	public static int stdWidth = 20, stdHeight = 10;
+	public int x, y, width = 16, height = 8;
 
 	protected InputHandler input;
 
@@ -59,19 +66,24 @@ public class GameButton {
 		buttonRect = new Rectangle(x, y, width, height);
 
 		input = Main.input;
+		
 	}
 
-	public GameButton(int x, int y, String text) {
+	public GameButton(int x, int y, String text, Font font) {
 		this.x = x;
 		this.y = y;
 
+		this.font = font;
+		
 		buttonRect = new Rectangle(x, y, width, height);
 
 		input = Main.input;
+		this.text = text;
+		
+		System.out.println(x);
 	}
 
 	protected void onClick() {
-
 	}
 
 	public void tick() {
@@ -105,15 +117,24 @@ public class GameButton {
 	
 	public void render() {
 		Graphics g = Main.g;
+		
 		g.setColor(kindaTransparent);
-
-		if (text != null) {
-			g.drawString(text, x, y);
-		}
 
 		if (onThis) {
 			g.fillRect(x, y, width, height);
 		}
+		
+		if(bordered) {
+			g.setColor(Color.black);
+			g.drawRect(x, y, width, height);
+		}
+		
+
+		if (text != null) {
+			g.setColor(Color.white);
+			g.drawString(text, x, y + (height / 2 + font.getSize() / 2));
+		}
+		
 	}
 
 	public void setColor(Color color) {

@@ -12,7 +12,7 @@ public class int_00 extends Level{
 
 	@Override
 	public void init() {
-		new NPC_generic(this, 0, 0, Assets.player, "...");
+		new NPC_generic(this, 0, 0, Assets.player, new String[] {"..."});
 	}
 
 }
