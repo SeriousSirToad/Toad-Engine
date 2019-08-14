@@ -12,6 +12,8 @@ public class Assets {
 	public static final Animation pl_u = new Animation(20, entities.getAnimation(128, 0, 16, 32, 3), true);
 	public static final Animation pl_dn = new Animation(20, entities.getAnimation(80, 0, 16, 32, 3), true);
 	
+	public static final BufferedImage npc1 = entities.getImage(0, 64, 16, 32);
+	
 	public static final BufferedImage cretin = entities.getImage(0, 48, 16, 16);
 	public static final Animation cr_hz = new Animation(10, entities.getAnimation(16, 48, 16, 32, 4), false);
 	public static final Animation cr_u = new Animation(10, entities.getAnimation(128, 48, 16, 32, 3), true);

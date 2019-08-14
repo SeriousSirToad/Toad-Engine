@@ -170,7 +170,7 @@ public class Main extends Canvas implements Runnable {
 
 	int xOffset = 0;
 	int yOffset = 0;
-
+	
 	boolean showCoords = false;
 
 	public void render() {

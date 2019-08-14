@@ -12,8 +12,8 @@ public class NPC_generic extends Mob {
 
 	GameWindow npcwindow;
 
-	public NPC_generic(Level level, int x, int y, BufferedImage image, String[] message) {
-		super(level, x, y, image);
+	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
+		super(level, x, y, image, dir);
 		name = genericNamer();
 		npcwindow = new GameWindow(name, message[0], 100, 80, null);
 	}
@@ -21,19 +21,23 @@ public class NPC_generic extends Mob {
 	int iteration = 0;
 	@Override
 	public void update() {
-
 		if (hasCollided(GameState.player.collider)) {
 			if (!npcwindow.active) {
 				npcwindow.activate();
-				
 			}
 		}
-
 	}
 
+	public void setName(String name) {
+		this.name = name;
+		npcwindow.setTitle(name);
+	}
+	
 	public String genericNamer() {
-		Random random = new Random(4);
-		switch (random.nextInt()) {
+		Random random = new Random();
+		int next = random.nextInt(4);
+		System.out.println("Int = " + next);
+		switch (next) {
 		case 0:
 			return "Dolly";
 		case 1:

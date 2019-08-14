@@ -18,6 +18,8 @@ import toad.game.entities.Player;
 public abstract class Level {
 
 	public boolean initialized = false;
+	protected boolean interior = false;
+
 	public Player player;
 	public BufferedImage image;
 	public int season = 0; // 0 is winter, 1 is spring, 2 = summer, 3 = fall
@@ -27,8 +29,8 @@ public abstract class Level {
 
 	public static Level bean = new lvl_bean();
 	public static Level test = new lvl_test();
-	protected int width = 0;
-	protected int height = 0;	
+	public int width = 0;
+	public int height = 0;	
 
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
 
@@ -81,7 +83,7 @@ public abstract class Level {
 
 	public abstract void init();
 
-	public int getWidth() {
+	public int scaledWidth() {
 		return (int) (width * GameState.renderScale);
 	}
 

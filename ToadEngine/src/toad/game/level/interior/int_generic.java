@@ -4,15 +4,16 @@ import toad.game.entities.npcs.NPC_generic;
 import toad.game.level.Level;
 import toad.gfx.Assets;
 
-public class int_00 extends Level{
+public class int_generic extends Level{
 
-	public int_00() {
+	public int_generic() {
 		super("/images/interior/int_00.png");
+		interior = true;
 	}
 
 	@Override
 	public void init() {
-		new NPC_generic(this, 0, 0, Assets.player, new String[] {"..."});
+		new NPC_generic(this, 10, 0, Assets.npc1, 2, new String[] {"..."});
 	}
 
 }

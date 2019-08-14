@@ -47,8 +47,8 @@ public class Camera {
 			followEntity();
 		}
 
-		if (level.getWidth() <= Main.width()) {
-			this.x = ((level.getWidth() / 2) - Main.width() / 2) / GameState.renderScale;
+		if (level.scaledWidth() <= Main.width()) {
+			this.x = ((level.scaledWidth() / 2) - Main.width() / 2) / GameState.renderScale;
 		}
 		if (level.getHeight() <= Main.height()) {
 			this.y = ((level.getHeight() / 2) - Main.height() / 2) / GameState.renderScale;

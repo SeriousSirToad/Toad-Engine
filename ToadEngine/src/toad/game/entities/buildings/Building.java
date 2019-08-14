@@ -20,8 +20,9 @@ public class Building extends Entity {
 	public Building(Level level, int x, int y, BufferedImage image, Level interior) {
 		super(level, x, y, image);
 		this.isSolid = true;
-		collider = new Rectangle(x, h - (33), 96, 33);
-		renderBounds = new Rectangle(this.x, this.y, w, h);
+		collider = new Rectangle(x, y + h - (33), 96, 33);
+		System.out.println("y of building " + this.y);
+		renderBounds = new Rectangle(x, y, w, h);
 		this.interior = interior;
 	}
 
@@ -40,11 +41,13 @@ public class Building extends Entity {
 		}
 	}
 
+	//So it took me a while to figure out but this method is designed with the x + y coords 
+	//to make it customizeable as to where the door is relative to the building
 	protected void makeStandardDoor(int x, int y) {
-		Rectangle doorRect = new Rectangle(this.x + x, this.h - y, 32, 1);
-		Rectangle door2 = new Rectangle(64, 112, 32, 8);
-		door = new Door(level, doorRect, interior, new Point(64, 79));
-		new Door(interior, door2, level, new Point(this.x + x, this.h - y));
+		Rectangle doorRect = new Rectangle(this.x + x, this.y + this.h - y, 32, 1);
+		Rectangle door2 = new Rectangle(interior.width / 2 - 16, interior.height - 1, 32, 8);
+		door = new Door(level, doorRect, interior, new Point(interior.width / 2 - 8, interior.height - 33));
+		new Door(interior, door2, level, new Point(this.x + x + 8, this.y + this.h - y - 23));
 	}
 
 }

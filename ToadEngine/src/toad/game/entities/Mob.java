@@ -1,6 +1,5 @@
 package toad.game.entities;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -30,9 +29,10 @@ public abstract class Mob extends Entity {
 		isMob = true;
 	}
 
-	public Mob(Level level, int x, int y, BufferedImage image) {
+	public Mob(Level level, int x, int y, BufferedImage image, int dir) {
 		super(level, x, y, image);
 		isMob = true;
+		movingDir = dir;
 	}
 
 	public void tick() {
@@ -92,7 +92,7 @@ public abstract class Mob extends Entity {
 			x += speed;
 			collider.x += speed;
 		}
-		if (x + w > level.getWidth()) {
+		if (x + w > level.width) {
 			x -= speed;
 			collider.x -= speed;
 		}
@@ -100,7 +100,7 @@ public abstract class Mob extends Entity {
 			y += speed;
 			collider.y += speed;
 		}
-		if (y + h > level.getHeight()) {
+		if (y + h > level.height) {
 			y -= speed;
 			collider.y -= speed;
 		}
@@ -129,12 +129,6 @@ public abstract class Mob extends Entity {
 
 	public void render() {
 		if (GameState.camera.contains(this)) {
-
-			if (name != null) {
-				Main.g.setColor(Color.white);
-				Main.g.drawString(name, x - GameState.camera.x, y - GameState.camera.y);
-				Main.g.drawString("yeah fr tho", 0, 10);
-			}
 
 			if (!moving) {
 				if (movingDir == 2) {
