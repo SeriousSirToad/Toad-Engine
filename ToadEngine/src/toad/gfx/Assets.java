@@ -31,11 +31,13 @@ public class Assets {
 
 	//Decor
 	public static final BufferedImage counter = entities.getImage(0, 160, 32, 32);
+	public static final BufferedImage bed = entities.getImage(16, 192, 48, 32);
 	
 	//Buildings
 	public static final BufferedImage shop = buildings.getImage(0, 0, 96, 80);
 	public static final BufferedImage pharmacy = buildings.getImage(96, 0, 96, 80);
 	public static final BufferedImage popostation = buildings.getImage(192, 0, 96, 80);
+	public static final BufferedImage apt_generic = buildings.getImage(0, 160, 96, 128);
 	public static final BufferedImage cabin = buildings.getImage(288, 0, 96, 80);
 
 }

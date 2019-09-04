@@ -1,6 +1,7 @@
 package toad.game.level;
 
 import toad.game.entities.Player;
+import toad.game.entities.buildings.Apartment_generic;
 import toad.game.entities.buildings.Shop;
 import toad.game.entities.npcs.NPC_generic;
 import toad.gfx.Assets;
@@ -16,7 +17,7 @@ public class lvl_bean extends Level {
 		new NPC_generic(this, 126, 61, Assets.npc1, 0, new String[] {"Just chilling."}).setName("Chill guy");;
 		new Shop(this, 51, 0);
 		new Shop(this, 167, 0);
-		new Shop(this, 116, 203);
+		new Apartment_generic(this, 116, 155);
 	}
 
 }

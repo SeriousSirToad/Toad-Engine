@@ -13,7 +13,7 @@ public class int_generic extends Level{
 
 	@Override
 	public void init() {
-		new NPC_generic(this, 10, 0, Assets.npc1, 2, new String[] {"..."});
+		new NPC_generic(this, 10, 0, Assets.npc1, 2, new String[] {"shopping be like"});
 	}
 
 }

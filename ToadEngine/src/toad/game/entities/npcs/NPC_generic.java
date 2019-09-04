@@ -3,7 +3,7 @@ package toad.game.entities.npcs;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import toad.game.GameState;
+import toad.game.entities.ActionZone;
 import toad.game.entities.Mob;
 import toad.game.level.Level;
 import toad.ui.GameWindow;
@@ -11,21 +11,19 @@ import toad.ui.GameWindow;
 public class NPC_generic extends Mob {
 
 	GameWindow npcwindow;
+	ActionZone zone;
 
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
 		name = genericNamer();
 		npcwindow = new GameWindow(name, message[0], 100, 80, null);
+		zone = new ActionZone(level, collider, npcwindow);
 	}
 
 	int iteration = 0;
 	@Override
 	public void update() {
-		if (hasCollided(GameState.player.collider)) {
-			if (!npcwindow.active) {
-				npcwindow.activate();
-			}
-		}
+		
 	}
 
 	public void setName(String name) {

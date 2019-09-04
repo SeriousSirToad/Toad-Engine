@@ -24,8 +24,13 @@ public abstract class Entity {
 		this.image = image;
 		this.level = level;
 		level.entities.add(this);
-		w = image.getWidth();
-		h = image.getHeight();
+		if(image != null) {
+			w = image.getWidth();
+			h = image.getHeight();
+		} else {
+			w = 0;
+			h = 0;
+		}
 		collider = new Rectangle(x, y + 3 * (h / 4), w, h / 4);
 	}
 
