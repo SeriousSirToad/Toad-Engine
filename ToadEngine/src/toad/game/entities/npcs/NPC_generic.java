@@ -8,10 +8,7 @@ import toad.game.entities.Mob;
 import toad.game.level.Level;
 import toad.ui.GameWindow;
 
-public class NPC_generic extends Mob {
-
-	GameWindow npcwindow;
-	ActionZone zone;
+public class NPC_generic extends NPC {
 
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
@@ -26,11 +23,6 @@ public class NPC_generic extends Mob {
 		
 	}
 
-	public void setName(String name) {
-		this.name = name;
-		npcwindow.setTitle(name);
-	}
-	
 	public String genericNamer() {
 		Random random = new Random();
 		int next = random.nextInt(4);

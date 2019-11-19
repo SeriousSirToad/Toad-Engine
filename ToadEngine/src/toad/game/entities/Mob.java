@@ -20,6 +20,7 @@ public abstract class Mob extends Entity {
 	protected int movingDir = 0;
 	protected String name;
 	protected ArrayList<Item> inventory = new ArrayList<>();
+	protected boolean isNPC = false;
 
 	public Mob(Level level, int x, int y, BufferedImage image, Animation hz, Animation up, Animation dn) {
 		super(level, x, y, image);

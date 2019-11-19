@@ -41,8 +41,10 @@ public class InGameUI {
 		windows.add(window);
 	}
 
-	public static void addToRendOrder(String s) {
+	public static int addToRendOrder(String s) {
 		strings.add(s);
+		return strings.indexOf(s);
+		
 	}
 
 	public static void clearRenderOrder() {
@@ -50,7 +52,11 @@ public class InGameUI {
 	}
 
 	public static void replaceRenderOrder(String s, String s2) {
-		strings.set(strings.indexOf(s), s2);
+		if (strings.indexOf(s) == -1) {
+			strings.add(s2);
+		} else {
+			strings.set(strings.indexOf(s), s2);
+		}
 	}
 
 	public static void removeFromRendOrder(GameWindow window) {
