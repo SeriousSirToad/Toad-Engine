@@ -16,7 +16,7 @@ public class int_apartment extends Level {
 	@Override
 	public void init() {
 		new ActionZone(this, new Rectangle(112, 47, 64, 54), new GameWindow("Bed", "Wanna sleep, eh bruh?", 100, 80, "Sleep"));
-		new Bed(this, 128, 55);
+		new Bed(this, 128, 52);
 	}
 
 }

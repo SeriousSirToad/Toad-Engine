@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import toad.game.entities.ActionZone;
-import toad.game.entities.Mob;
 import toad.game.level.Level;
 import toad.ui.GameWindow;
 
