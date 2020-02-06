@@ -22,7 +22,8 @@ public abstract class Level {
 
 	public Player player;
 	public BufferedImage image;
-	public int season = 0; // 0 is winter, 1 is spring, 2 = summer, 3 = fall
+	public int time = 0;
+	public int season = 1; // 0 is winter, 1 is spring, 2 = summer, 3 = fall
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	public ArrayList<Rectangle> colliders = new ArrayList<Rectangle>();
 	public ArrayList<Door> doors = new ArrayList<Door>();
