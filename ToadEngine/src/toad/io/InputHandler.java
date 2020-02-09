@@ -1,5 +1,6 @@
 package toad.io;
 
+import java.awt.Canvas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,13 +15,11 @@ public class InputHandler implements KeyListener, MouseListener, MouseMotionList
 	public int MouseY = 0;
 	private boolean clicking = false;
 
-	public InputHandler(Main m) {
+	public InputHandler(Canvas m) {
 
 		m.addKeyListener(this);
 		m.addMouseListener(this);
 		m.addMouseMotionListener(this);
-		//xy = "Mouse X: " + MouseX + ", Mouse Y: " + MouseY;
-		//InGameUI.addToRendOrder(xy);
 
 	}
 

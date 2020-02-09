@@ -82,6 +82,17 @@ public class GameButton {
 		
 		System.out.println(x);
 	}
+	
+	public GameButton(int x, int y, int width, int height,InputHandler input) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+
+		buttonRect = new Rectangle(x, y, width, height);
+
+		this.input = input;
+	}
 
 	protected void onClick() {
 	}
@@ -115,9 +126,8 @@ public class GameButton {
 		this.width = width;
 	}
 	
-	public void render() {
-		Graphics g = Main.g;
-		
+	public void render(Graphics g) {
+
 		g.setColor(kindaTransparent);
 
 		if (onThis) {

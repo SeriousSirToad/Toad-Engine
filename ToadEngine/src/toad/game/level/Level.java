@@ -1,5 +1,6 @@
 package toad.game.level;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
 import toad.game.entities.Player;
+import toad.gfx.Shader;
 
 public abstract class Level {
 
@@ -31,7 +33,7 @@ public abstract class Level {
 	public static Level bean = new lvl_bean();
 	public static Level test = new lvl_test();
 	public int width = 0;
-	public int height = 0;	
+	public int height = 0;
 
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
 
@@ -61,9 +63,12 @@ public abstract class Level {
 
 	}
 
+	public Shader shader = new Shader(new Color(0, 0, 0), 0.15);
+
 	public void render() {
 		Graphics g = Main.g;
 		g.drawImage(image, 0 - GameState.camera.x, 0 - GameState.camera.y, width, height, null);
+		shader.update();
 		entities.sort(entitySorter);
 		for (Entity e : entities) {
 			e.render();

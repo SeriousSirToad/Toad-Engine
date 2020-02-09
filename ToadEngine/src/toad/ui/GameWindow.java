@@ -76,7 +76,7 @@ public class GameWindow {
 		g.setColor(Color.white);
 		g.drawRect(x, y, w, h);
 		for (GameButton b : buttons) {
-			b.render();
+			b.render(g);
 		}
 		showText(g);
 

@@ -2,12 +2,17 @@ package toad.game;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import toad.dev.DevOptions;
+import toad.gfx.Animation;
+import toad.gfx.Shader;
 import toad.io.InputHandler;
 import toad.ui.InGameUI;
 
@@ -28,12 +33,15 @@ public class Main extends Canvas implements Runnable {
 	static Dimension gameDimension;
 	public static InputHandler input;
 
-	private static boolean devOptions = true;
+	public static boolean devOptions = true;
+	public DevOptions devWindow;
 
+	public ArrayList<Animation> animations = new ArrayList<>();
+	
 	public static Menu menu;
 
 	public Main() {
-
+		
 		main = this;
 
 		gameDimension = new Dimension((int) (WIDTH), (int) (HEIGHT));
@@ -48,7 +56,6 @@ public class Main extends Canvas implements Runnable {
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 
-
 		input = new InputHandler(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -60,7 +67,7 @@ public class Main extends Canvas implements Runnable {
 
 	String playerCoords;
 
-	float frames = 0;
+	public float frames = 0;
 
 	@Override
 	public void run() {
@@ -74,6 +81,7 @@ public class Main extends Canvas implements Runnable {
 		double delta2 = 0;
 
 		while (running) {
+			
 			if (!stateInit) {
 				stateInit = true;
 				GameState.init();
@@ -126,7 +134,7 @@ public class Main extends Canvas implements Runnable {
 	public void tick() {
 
 		tickCount++;
-		
+
 		if (GameState.running) {
 			GameState.player.getLevel().tick();
 			GameState.camera.tick();
@@ -137,8 +145,8 @@ public class Main extends Canvas implements Runnable {
 					InGameUI.addToRendOrder("FPS: " + frames);
 				}
 			}
-			
-			if(input.esc.isPressed()) {
+
+			if (input.esc.isPressed()) {
 				GameState.running = false;
 				InGameUI.clearRenderOrder();
 			}
@@ -147,20 +155,19 @@ public class Main extends Canvas implements Runnable {
 			menu.tick();
 		}
 
+		for (Animation a : animations)
+			a.update();
+		
 		if (devOptions) {
 			playerCoords = "x " + GameState.player.x + ", y " + GameState.player.y;
 			if (showCoords && !oldPlayerCoords.equals(null)) {
 				InGameUI.replaceRenderOrder(oldPlayerCoords, playerCoords);
 			}
-			if (input.shift.isPressed() && input.NUM_1.pressedAndReleased()) {
-				showCoords = !showCoords;
-				if (showCoords) {
-					InGameUI.addToRendOrder(playerCoords);
-				} else {
-					InGameUI.removeFromRendOrder(playerCoords);
-				}
-			}
 			oldPlayerCoords = playerCoords;
+		}
+		
+		if (devOptions) {
+			devWindow.render();
 		}
 
 	}
@@ -170,9 +177,11 @@ public class Main extends Canvas implements Runnable {
 
 	int xOffset = 0;
 	int yOffset = 0;
-	
-	boolean showCoords = false;
 
+	boolean showCoords = false;
+	
+	
+	
 	public void render() {
 
 		// Creating graphics object
@@ -189,7 +198,7 @@ public class Main extends Canvas implements Runnable {
 		g.scale(GameState.renderScale, GameState.renderScale);
 		g.setFont(InGameUI.standardFont);
 		GameState.camera.render();
-		if(GameState.running) {
+		if (GameState.running) {
 			InGameUI.render(0, g);
 			InGameUI.render(1, g);
 		}
@@ -200,10 +209,10 @@ public class Main extends Canvas implements Runnable {
 	}
 
 	public void start() {
-
 		running = true;
 		new Thread(this).start();
-
+		if (devOptions)
+			devWindow = new DevOptions();
 	}
 
 	public static int width() {

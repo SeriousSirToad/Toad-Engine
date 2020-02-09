@@ -1,7 +1,6 @@
 package toad.gfx;
 
 import java.awt.Color;
-
 import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
@@ -53,6 +52,7 @@ public class Camera {
 		if (level.getHeight() <= Main.height()) {
 			this.y = ((level.getHeight() / 2) - Main.height() / 2) / GameState.renderScale;
 		}
+
 	}
 
 	public void followEntity() {

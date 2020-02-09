@@ -2,6 +2,8 @@ package toad.gfx;
 
 import java.awt.image.BufferedImage;
 
+import toad.game.Main;
+
 public class Animation {
 
 	public BufferedImage[] frames;
@@ -19,7 +21,8 @@ public class Animation {
 			this.skipFirst = skipFirst;
 		}
 		frames = images;
-
+		Main.main.animations.add(this);
+		
 	}
 
 	byte b = 0;

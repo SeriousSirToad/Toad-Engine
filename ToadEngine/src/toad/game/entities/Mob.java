@@ -39,11 +39,6 @@ public abstract class Mob extends Entity {
 	public void tick() {
 		if (!initialized)
 			init();
-		if (moving) {
-			hz.update();
-			up.update();
-			dn.update();
-		}
 		update();
 	}
 

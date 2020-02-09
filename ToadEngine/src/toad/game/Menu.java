@@ -50,8 +50,8 @@ public class Menu {
 	public void render() {
 		Graphics g = Main.g;
 		g.drawImage(menuImage, 0, 0, menuImage.getWidth(), menuImage.getHeight(), null);
-		start.render();
-		close.render();
+		start.render(g);
+		close.render(g);
 	}
 
 }
