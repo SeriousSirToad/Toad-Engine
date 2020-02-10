@@ -18,6 +18,8 @@ public abstract class Mob extends Entity {
 	protected Animation up;
 	protected Animation dn;
 	protected int movingDir = 0;
+	protected int HZDir = 0; // where hes facing horizontally, can be -1, 0, or 1
+	protected int VDir = 0;
 	protected String name;
 	protected ArrayList<Item> inventory = new ArrayList<>();
 	protected boolean isNPC = false;
@@ -56,13 +58,15 @@ public abstract class Mob extends Entity {
 				if (!hasCollided(xa, 0, r)) {
 					move(xa, 0);
 				}
-
 				return;
 			} else {
+
 				if (hasCollided(xa, ya, r)) {
 					return;
 				}
+
 			}
+
 		}
 
 		if (xa != 0 || ya != 0) {
