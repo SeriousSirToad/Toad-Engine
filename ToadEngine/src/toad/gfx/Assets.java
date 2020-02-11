@@ -8,9 +8,10 @@ public class Assets {
 	static SpriteSheet buildings = new SpriteSheet("/images/ss_bldg.png");
 	// Mobs
 	public static final BufferedImage player = entities.getImage(0, 0, 16, 32);
-	public static final Animation pl_hz = new Animation(10, entities.getAnimation(16, 0, 16, 32, 5), false);
+	public static final Animation pl_hz = new Animation(10, entities.getAnimation(288, 0, 16, 32, 6), true);
+	public static final Animation pl_dr = new Animation(10, entities.getAnimation(0, 0, 16, 32, 6), true);
 	public static final Animation pl_u = new Animation(15, entities.getAnimation(128, 0, 16, 32, 3), true);
-	public static final Animation pl_dn = new Animation(15, entities.getAnimation(80, 0, 16, 32, 3), true);
+	public static final Animation pl_dn = new Animation(15, entities.getAnimation(192, 0, 16, 32, 3), true);
 	public static final Animation pl_ur = new Animation(10, entities.getAnimation(96, 0, 16, 32, 6), true);
 	
 	public static final BufferedImage npc1 = entities.getImage(0, 64, 16, 32);

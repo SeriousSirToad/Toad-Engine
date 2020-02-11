@@ -77,6 +77,18 @@ public class DevOptions extends Canvas {
 			}
 		}
 	};
+	GameButton previewHZ = new GameButton(0, 16, 16, 8, input) {
+		public void onClick() {
+			if (!previewActive) {
+				activePreview = new AnimationPreview(Assets.pl_hz);
+				previewActive = true;
+			} else {
+				activePreview.close();
+				activePreview = null;
+				previewActive = false;
+			}
+		}
+	};
 
 	BufferStrategy bs;
 	public static Graphics2D g;
@@ -96,6 +108,8 @@ public class DevOptions extends Canvas {
 		Animpreview.tick();
 		previewup.render(g);
 		previewup.tick();
+		previewHZ.render(g);
+		previewHZ.tick();
 		
 		g.drawString("" + Main.main.frames, 100, 100);
 

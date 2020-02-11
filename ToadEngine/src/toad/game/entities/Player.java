@@ -17,14 +17,10 @@ public class Player extends Mob {
 	public Player(Level level, int x, int y) {
 		super(level, x, y, Assets.player, Assets.pl_hz, Assets.pl_u, Assets.pl_dn);
 		upr = Assets.pl_ur;
+		dnr = Assets.pl_dr;
 		makeCollider(4, 24, 7, 8);
 
 	}
-
-	/*
-	 * 1 2 3 4 0 5 Rotation map 6 7 8
-	 * 
-	 */
 
 	@Override
 	public void update() {
@@ -59,27 +55,36 @@ public class Player extends Mob {
 					Main.g.drawImage(image, x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				} else if (HZDir == -1) {
 					Main.g.drawImage(image, x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h, null);
+				} else {
+					Main.g.drawImage(dn.frames[0], x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				}
 			} else {
 				if (HZDir == 1) {
 					Main.g.drawImage(upr.frames[0], x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				} else if (HZDir == -1) {
-					Main.g.drawImage(upr.frames[0], x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h, null);
+					Main.g.drawImage(upr.frames[0], x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h,
+							null);
+				} else {
+					Main.g.drawImage(up.frames[0], x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				}
 			}
 
 		} else {
 			if (VDir == 1) {
 				if (HZDir == 1) {
-					Main.g.drawImage(hz.animate(), x - GameState.camera.x, y - GameState.camera.y, w, h, null);
+					Main.g.drawImage(dnr.animate(), x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				} else if (HZDir == -1) {
-					Main.g.drawImage(hz.animate(), x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h, null);
+					Main.g.drawImage(dnr.animate(), x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h,
+							null);
+				} else {
+					Main.g.drawImage(dn.animate(), x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				}
 			} else {
 				if (HZDir == 1) {
 					Main.g.drawImage(upr.animate(), x - GameState.camera.x, y - GameState.camera.y, w, h, null);
 				} else if (HZDir == -1) {
-					Main.g.drawImage(upr.animate(), x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h, null);
+					Main.g.drawImage(upr.animate(), x - GameState.camera.x + (w), y - GameState.camera.y, -(w), h,
+							null);
 				}
 			}
 		}
