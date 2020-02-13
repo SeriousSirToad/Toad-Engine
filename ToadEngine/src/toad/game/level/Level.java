@@ -63,16 +63,16 @@ public abstract class Level {
 
 	}
 
-	public Shader shader = new Shader(new Color(0, 0, 0), 0.15);
+	public Shader shader = new Shader(new Color(0, 0, 0), 0.0);
 
 	public void render() {
 		Graphics g = Main.g;
 		g.drawImage(image, 0 - GameState.camera.x, 0 - GameState.camera.y, width, height, null);
-		shader.update();
 		entities.sort(entitySorter);
 		for (Entity e : entities) {
 			e.render();
 		}
+		shader.update();
 	}
 
 	public Level(String imagePath) {

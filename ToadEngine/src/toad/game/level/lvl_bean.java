@@ -1,5 +1,7 @@
 package toad.game.level;
 
+import java.awt.Color;
+
 import toad.game.entities.Player;
 import toad.game.entities.buildings.Apartment_generic;
 import toad.game.entities.buildings.Shop;
@@ -21,6 +23,7 @@ public class lvl_bean extends Level {
 		new Apartment_generic(this, 116, 155);
 		new Tree(this, 338, 180, 0);
 		new Tree(this, 338, 256, 0);
+		shader.new Light(295, 152, 100, 2, Color.yellow);
 	}
 
 }

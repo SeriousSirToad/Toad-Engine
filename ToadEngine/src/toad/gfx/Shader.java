@@ -28,6 +28,7 @@ public class Shader {
 		ambColG = ambientColor.getGreen();
 		ambColR = ambientColor.getRed();
 		this.intensity = intensity * 255;
+		makeLightMap(lightMap);
 	}
 	
 	public class Light{
