@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
+import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
 import toad.ui.DialogueWindow;
@@ -27,7 +28,7 @@ public class NPC_generic extends NPC {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		zone = new ActionZone(level, collider, npcwindow);
+		zone = new ActionZone(level, collider, npcwindow, Main.input.E);
 	}
 
 	int iteration = 0;

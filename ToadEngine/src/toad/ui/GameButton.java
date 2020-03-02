@@ -162,5 +162,10 @@ public class GameButton {
 		kindaTransparent = new Color(color.getRed(), color.getGreen(),
 				color.getBlue(), 100);
 	}
+	
+	public void setTextNum(int num){
+		textNum = num;
+	}
+
 
 }

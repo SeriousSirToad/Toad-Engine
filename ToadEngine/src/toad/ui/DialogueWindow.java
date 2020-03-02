@@ -22,13 +22,11 @@ public class DialogueWindow extends GameWindow {
 	TextList PlayerOptions;
 	static TextList NPCOptions;
 	Integer numR;
+
 	static StringManager sm = new StringManager();
 	Integer numO;
-	int gbNum = 1;
 	public static ArrayList<String> choiceArr = new ArrayList<String>();
 	public static ArrayList<String> npcArr = new ArrayList<String>();
-	public static int numButtons = 0;
-	public static boolean deactivate = false;
 	public TextNode Current;
 	public TextNode temp;
 
@@ -80,14 +78,27 @@ public class DialogueWindow extends GameWindow {
 				Current = Current.next;
 			}
 			int c = 0;
-			while (Current != null) {
+			if(Current != null){
+			
+			while (!(Current.text.equals("WAIT"))) {
 				choiceArr.set(c, Current.text);
 				c++;
 				Current = Current.next;
+				if(Current == null){
+					break;
+				}
+			}
+			}
+			int q = 0; 
+			while(q < c){
+				if(gameButtons.get(q).textNum < NPCOptions.size())
+				gameButtons.get(q).setTextNum(gameButtons.get(q).textNum + c);
+				q++;
 			}
 
-		} else {
+		} else if (a == -1){
 			deactivate();
+			choiceSorter(0);
 		}
 	}
 
@@ -98,9 +109,9 @@ public class DialogueWindow extends GameWindow {
 			count++;
 			if (count == x) {
 				String s = npcCurrent.next.text;
+				
 				choiceSorter(sm.StringChecker(s, npcArr));
 				break;
-
 			}
 			npcCurrent = npcCurrent.next;
 		}
@@ -112,8 +123,8 @@ public class DialogueWindow extends GameWindow {
 				- 38, y + h - GameButton.stdHeight - m, buttonName, bodyFont,
 				line.length() * 2, 5, i) {
 			public void onClick() {
-					System.out.println(this.textNum);
-					input(this.textNum);
+				 System.out.println(this.textNum);
+				input(this.textNum);
 			}
 		});
 
@@ -121,7 +132,7 @@ public class DialogueWindow extends GameWindow {
 
 	public void showText(Graphics g) {
 		int m = 55;
-
+		int gbNum = 1;
 		g.setColor(Color.white);
 		g.drawString(title, x + 1, y + InGameUI.standardFont.getSize() + 1);
 		g.setFont(bodyFont);
@@ -130,7 +141,7 @@ public class DialogueWindow extends GameWindow {
 				.getHeight());
 		for (String line : choiceArr) {
 			g.drawString(line, x + 1, tempy += g.getFontMetrics().getHeight());
-			if (gbNum < PlayerOptions.size()) {
+			if (gameButtons.size() < choiceArr.size()) {
 				makeButtons(m, gbNum, line);
 				m -= 7;
 				gbNum++;
@@ -147,25 +158,22 @@ public class DialogueWindow extends GameWindow {
 		g.fillRect(x, y, w, h);
 		g.setColor(Color.white);
 		g.drawRect(x, y, w, h);
+		if(gameButtons != null){
 		for (GameButton b : gameButtons) {
 			b.render(g);
+		}
 		}
 		showText(g);
 
 	}
 
-	public void deactivate() {
-		choiceSorter(0);
-		active = false;
-		InGameUI.removeFromRendOrder(this);
-	}
-
 	public void update() {
 		if (active) {
 			show();
+			if(gameButtons != null){
 			for (GameButton b : gameButtons) {
 				b.tick();
-
+			}
 			}
 		}
 	}

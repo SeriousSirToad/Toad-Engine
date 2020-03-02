@@ -17,11 +17,15 @@ public class StringManager{
 			s = s.replaceAll("EXIT", "");
 			arr.set(0, s);
 			return -1;
-		} else if (s.contains("RETURN")) {
-			s = s.replaceAll("RETURN", "");
+		} else if (s.contains("CONTINUE")) {
+			s = s.replaceAll("CONTINUE", "");
 			arr.set(0, s);
 			return 1;
-		} else {
+		}else if(s.contains("FINAL")){
+			s = s.replaceAll("FINAL", "");
+			arr.set(0, s);
+			return 2;
+		}else {
 			arr.set(0, s);
 			return 0;
 		}
