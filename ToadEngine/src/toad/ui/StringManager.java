@@ -10,23 +10,20 @@ public class StringManager{
 
 	}
 	
-	public StringManager(String s, ArrayList<String> arr, boolean deactivate) {
-		this.s = s;
-		this.arr = arr;
-		this.deactivate = deactivate;
-	}
 	
 	
-	public void StringChecker(){
+	public int StringChecker(String s, ArrayList<String> arr){
 		if (s.contains("EXIT")) {
 			s = s.replaceAll("EXIT", "");
 			arr.set(0, s);
-			deactivate = true;
+			return -1;
 		} else if (s.contains("RETURN")) {
 			s = s.replaceAll("RETURN", "");
 			arr.set(0, s);
+			return 1;
 		} else {
 			arr.set(0, s);
+			return 0;
 		}
 	}
 	
