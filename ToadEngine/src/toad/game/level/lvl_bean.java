@@ -17,8 +17,8 @@ public class lvl_bean extends Level {
 
 	public void init() {
 		player = new Player(this, 295, 152);
-		new NPC_generic(this, 126, 61, Assets.npc1, 0, "C:\\Users\\4804035919\\Desktop\\Toad-Engine\\ToadEngine\\res\\text\\textText",
-				"C:\\Users\\4804035919\\Desktop\\Toad-Engine\\ToadEngine\\res\\text\\testText2", new String[] {"Just chilling."}).setName("Chill guy");
+		new NPC_generic(this, 126, 61, Assets.npc1, 0, "res/text/textText", "res/text/testText2",
+				new String[] { "Just chilling." }).setName("Chill guy");
 		new Shop(this, 51, 0);
 		new Shop(this, 167, 0);
 		new Apartment_generic(this, 116, 155);
