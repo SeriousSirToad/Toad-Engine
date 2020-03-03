@@ -1,11 +1,9 @@
 package toad.gfx;
 
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageFilter;
-import java.awt.image.RGBImageFilter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -37,6 +35,16 @@ public class SpriteSheet {
 		}
 
 		return frames;
+	}
+	
+	public BufferedImage[] getManualAnimation(ArrayList<Rectangle> frames) {
+		BufferedImage[] anim = new BufferedImage[frames.size()];
+		for (int i = 0; i < frames.size(); i++) {
+
+			anim[i] = sheet.getSubimage(frames.get(i).x, frames.get(i).y, frames.get(i).width, frames.get(i).height);
+
+		}
+		return anim;
 	}
 
 }
