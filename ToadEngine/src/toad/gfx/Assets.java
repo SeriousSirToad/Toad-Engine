@@ -27,7 +27,7 @@ public class Assets {
 		case 1:
 			return entities.getImage(32, 96, 32, 64);
 		default:
-			return entities.getImage(0, 96, 32, 64);
+			return entities.getImage(3, 107, 25, 53);
 		}
 	}
 

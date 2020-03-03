@@ -1,6 +1,10 @@
 package toad.gfx;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageFilter;
+import java.awt.image.RGBImageFilter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
