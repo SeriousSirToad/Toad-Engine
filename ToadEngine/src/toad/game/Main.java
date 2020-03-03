@@ -2,7 +2,6 @@ package toad.game;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -12,7 +11,6 @@ import javax.swing.JFrame;
 
 import toad.dev.DevOptions;
 import toad.gfx.Animation;
-import toad.gfx.Shader;
 import toad.io.InputHandler;
 import toad.ui.InGameUI;
 

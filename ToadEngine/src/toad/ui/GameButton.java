@@ -16,16 +16,15 @@ public class GameButton {
 
 	private String text;
 	private Font font;
-	
+
 	public boolean hasBeenClicked = false;
 	public boolean attatchedToEntity = false;
 	protected boolean onThis = false;
 
 	public Color color;
 	Color mainColor = new Color(255, 255, 255);
-	
 	public boolean bordered = true;
-	
+	public int textNum;
 	public int numTimesClicked;
 
 	public static int stdWidth = 20, stdHeight = 10;
@@ -48,6 +47,19 @@ public class GameButton {
 
 	}
 
+	public GameButton(int x, int y, String text, Font font, int width, int height, int textNum) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.font = font;
+		this.textNum = textNum;
+		buttonRect = new Rectangle(x, y, width, height);
+
+		input = Main.input;
+		this.text = text;
+	}
+
 	public GameButton(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -66,7 +78,7 @@ public class GameButton {
 		buttonRect = new Rectangle(x, y, width, height);
 
 		input = Main.input;
-		
+
 	}
 
 	public GameButton(int x, int y, String text, Font font) {
@@ -74,16 +86,15 @@ public class GameButton {
 		this.y = y;
 
 		this.font = font;
-		
+
 		buttonRect = new Rectangle(x, y, width, height);
 
 		input = Main.input;
 		this.text = text;
-		
-		System.out.println(x);
+
 	}
-	
-	public GameButton(int x, int y, int width, int height,InputHandler input) {
+
+	public GameButton(int x, int y, int width, int height, InputHandler input) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -121,11 +132,12 @@ public class GameButton {
 	}
 
 	Color kindaTransparent = new Color(255, 255, 255, 127);
+	Color TestColor = new Color(225, 124, 5, 56);
 
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	public void render(Graphics g) {
 
 		g.setColor(kindaTransparent);
@@ -133,22 +145,27 @@ public class GameButton {
 		if (onThis) {
 			g.fillRect(x, y, width, height);
 		}
-		
-		if(bordered) {
+
+		if (bordered) {
 			g.setColor(Color.black);
 			g.drawRect(x, y, width, height);
 		}
-		
 
 		if (text != null) {
 			g.setColor(Color.white);
 			g.drawString(text, x, y + (height / 2 + font.getSize() / 2));
 		}
-		
+
 	}
 
 	public void setColor(Color color) {
-		kindaTransparent = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
+		kindaTransparent = new Color(color.getRed(), color.getGreen(),
+				color.getBlue(), 100);
 	}
+	
+	public void setTextNum(int num){
+		textNum = num;
+	}
+
 
 }

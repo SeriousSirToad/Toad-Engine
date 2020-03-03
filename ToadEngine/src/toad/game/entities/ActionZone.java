@@ -43,6 +43,10 @@ public class ActionZone extends Entity {
 				if (!gw.active)
 					gw.activate();
 		}
+		
+		if (!bounds.intersects(GameState.player.collider) && gw.active){
+			gw.deactivate(); 
+		} 
 	}
 
 }

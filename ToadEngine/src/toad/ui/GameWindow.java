@@ -41,7 +41,7 @@ public class GameWindow {
 		this.h = h;
 		System.out.println("w " + w);
 		x = (GameState.gameWidth() / 2) - w / 2;
-		y = (GameState.gameHeight() / 2) - h / 2;
+		y = (GameState.gameHeight() / 2)- h / 2;
 		buttons[0] = new GameButton(x + (w / 2) - (GameButton.stdWidth / 2), y + h - GameButton.stdHeight, buttonName, bodyFont) {
 			public void onClick() {
 				deactivate();
