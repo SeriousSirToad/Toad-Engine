@@ -56,7 +56,7 @@ public class DevOptions extends Canvas {
 	GameButton Animpreview = new GameButton(0, 0, 16, 8, input) {
 		public void onClick() {
 			if (!previewActive) {
-				activePreview = new AnimationPreview(Assets.pl_hz);
+				activePreview = new AnimationPreview(Assets.pl_dr);
 				previewActive = true;
 			} else {
 				activePreview.close();
