@@ -14,8 +14,8 @@ public class GameState {
 	public static int levelSeason = 0;
 	public static boolean running = false;
 	private static final String welcomeMessage = "You're playing the super duper pre\n"
-											   + "alpha. Press the button to close this \n"
-											   + "window. Press E to interact with the \n"
+											   + "alpha. Press the button to close this\n"
+											   + "window. Press E to interact with the\n"
 											   + "bed when you find it";
 	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, null);
 

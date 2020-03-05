@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import toad.game.Main;
+import toad.io.StringManager;
 
 public class DialogueWindow extends GameWindow {
 
