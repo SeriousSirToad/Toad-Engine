@@ -44,7 +44,7 @@ public class Building extends Entity {
 
 	// So it took me a while to figure out but this method is designed with the x +
 	// y coords
-	// to make it customizeable as to where the door is relative to the building
+	// to make it customizeable as to where the door is relative to the building 
 	protected void makeStandardDoor(int x, int y) {
 		Rectangle doorRect = new Rectangle(this.x + x, this.y + this.h - y, 32, 1);
 		Rectangle door2 = new Rectangle(interior.width / 2 - 16, interior.height - 1, 32, 8);

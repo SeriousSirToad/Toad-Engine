@@ -6,6 +6,7 @@ import toad.game.entities.Player;
 import toad.game.entities.buildings.Apartment_generic;
 import toad.game.entities.buildings.Shop;
 import toad.game.entities.flora.Tree;
+import toad.game.entities.npcs.Cretin;
 import toad.game.entities.npcs.NPC_generic;
 import toad.gfx.Assets;
 
@@ -24,6 +25,7 @@ public class lvl_bean extends Level {
 		new Apartment_generic(this, 116, 155);
 		new Tree(this, 338, 180, 0);
 		new Tree(this, 338, 256, 0);
+		new Cretin(this, 87, 86);
 		shader.new Light(295, 152, 100, 2, Color.yellow);
 	}
 
