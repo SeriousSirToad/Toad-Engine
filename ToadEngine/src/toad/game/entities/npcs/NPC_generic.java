@@ -7,7 +7,6 @@ import java.util.Random;
 import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
-import toad.ui.DialogueWindow;
 import toad.ui.GameWindow;
 
 public class NPC_generic extends NPC {
@@ -19,18 +18,6 @@ public class NPC_generic extends NPC {
 		zone = new ActionZone(level, collider, npcwindow);
 	}
 	
-	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String f, String f2, String[] message) {
-		super(level, x, y, image, dir);
-		name = genericNamer();
-		try {
-			npcwindow = new DialogueWindow(name, "yolo",  100, 80, null, f, f2);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		zone = new ActionZone(level, collider, npcwindow, Main.input.E);
-	}
-
 	int iteration = 0;
 	@Override
 	public void update() {

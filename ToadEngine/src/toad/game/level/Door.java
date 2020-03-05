@@ -20,6 +20,7 @@ public class Door {
 		this.rect = rect;
 		this.level = level;
 		this.tpLocation = tpLocation;
+		this.nativeLevel = nativeLevel;
 		nativeLevel.doors.add(this);
 
 	}
