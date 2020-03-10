@@ -1,5 +1,6 @@
 package toad.game.entities;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -17,6 +18,7 @@ public abstract class Entity {
 	public boolean isMob = false;
 	public Rectangle collider;
 	protected boolean initialized;
+	public Point colliderLoc;
 
 	public Entity(Level level, int x, int y, BufferedImage image) {
 		this.x = x;
@@ -32,6 +34,9 @@ public abstract class Entity {
 			h = 0;
 		}
 		collider = new Rectangle(x, y + 3 * (h / 4), w, h / 4);
+		colliderLoc = colliderLocation();
+
+		System.out.println("Point | X " + colliderLoc.x + " Y " + colliderLoc.y);
 	}
 
 	public void tick() {
@@ -68,6 +73,12 @@ public abstract class Entity {
 
 	public void makeCollider(int x, int y, int w, int h) {
 		collider = new Rectangle(this.x + x, this.y + y, w, h);
+		colliderLoc = colliderLocation();
+	}
+	
+	public Point colliderLocation() {
+
+		return new Point(collider.x - x, collider.y - y);
 	}
 
 }

@@ -1,10 +1,8 @@
 package toad.game.entities.npcs;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
 
-import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
 import toad.ui.GameWindow;
