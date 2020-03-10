@@ -73,10 +73,6 @@ public abstract class Level {
 		entities.sort(entitySorter);
 		for (Entity e : entities) {
 			e.render();
-			g.drawRect(e.collider.x - GameState.camera.x, e.collider.y- GameState.camera.y, e.collider.width, e.collider.height);
-		}
-		for(Rectangle r : colliders) {
-			g.drawRect(r.x - GameState.camera.x, r.y - GameState.camera.y, r.width, r.height);
 		}
 		shader.update();
 	}
