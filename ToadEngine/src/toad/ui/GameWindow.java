@@ -3,16 +3,17 @@ package toad.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import toad.game.GameState;
 import toad.game.Main;
 
 public class GameWindow {
 
-	public GameButton[] buttons = new GameButton[1];
+	ArrayList<GameButton> buttons = new ArrayList<>();
 
 	static Font bodyFont = new Font("Comic sans ms", Font.PLAIN, 4);
-	
+
 	public int w, h;
 	public int x, y;
 
@@ -41,12 +42,13 @@ public class GameWindow {
 		this.h = h;
 		System.out.println("w " + w);
 		x = (GameState.gameWidth() / 2) - w / 2;
-		y = (GameState.gameHeight() / 2)- h / 2;
-		buttons[0] = new GameButton(x + (w / 2) - (GameButton.stdWidth / 2), y + h - GameButton.stdHeight, buttonName, bodyFont) {
+		y = (GameState.gameHeight() / 2) - h / 2;
+		buttons.add(new GameButton(x + (w / 2) - (GameButton.stdWidth / 2), y + h - GameButton.stdHeight, buttonName,
+				bodyFont) {
 			public void onClick() {
 				deactivate();
 			}
-		};
+		});
 	}
 
 	public void activate() {
@@ -83,21 +85,21 @@ public class GameWindow {
 	}
 
 	public void showText(Graphics g) {
-		
+
 		g.setColor(Color.white);
 		g.drawString(title, x + 1, y + InGameUI.standardFont.getSize() + 1);
 		g.setFont(bodyFont);
 		int tempy = y + InGameUI.standardFont.getSize() + 1;
 		for (String line : body.split("\n"))
-	        g.drawString(line, x + 1, tempy += g.getFontMetrics().getHeight());
+			g.drawString(line, x + 1, tempy += g.getFontMetrics().getHeight());
 		g.setFont(InGameUI.standardFont);
-		
+
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public void setBody(String body) {
 		this.body = body;
 	}

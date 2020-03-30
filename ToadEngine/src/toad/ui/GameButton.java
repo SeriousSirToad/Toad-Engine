@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import toad.game.GameState;
 import toad.game.Main;
@@ -94,7 +95,7 @@ public class GameButton {
 
 	}
 
-	public GameButton(int x, int y, int width, int height, InputHandler input) {
+	public GameButton(int x, int y, int width, int height, InputHandler input, ArrayList<GameButton> arr) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -103,6 +104,8 @@ public class GameButton {
 		buttonRect = new Rectangle(x, y, width, height);
 
 		this.input = input;
+
+		arr.add(this);
 	}
 
 	protected void onClick() {
@@ -159,8 +162,11 @@ public class GameButton {
 	}
 
 	public void setColor(Color color) {
-		kindaTransparent = new Color(color.getRed(), color.getGreen(),
-				color.getBlue(), 100);
+		kindaTransparent = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
+	}
+
+	public void setTextNum(int num) {
+		textNum = num;
 	}
 
 }

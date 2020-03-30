@@ -53,7 +53,8 @@ public class InGameUI {
 
 	public static void replaceRenderOrder(String s, String s2) {
 		if (strings.indexOf(s) == -1) {
-			strings.add(s2);
+			strings.add(s);
+			strings.set(strings.indexOf(s), s2);
 		} else {
 			strings.set(strings.indexOf(s), s2);
 		}

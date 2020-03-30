@@ -1,4 +1,4 @@
-package toad.ui;
+package toad.io;
 
 import java.util.ArrayList;
 
@@ -10,23 +10,24 @@ public class StringManager{
 
 	}
 	
-	public StringManager(String s, ArrayList<String> arr, boolean deactivate) {
-		this.s = s;
-		this.arr = arr;
-		this.deactivate = deactivate;
-	}
 	
 	
-	public void StringChecker(){
+	public int StringChecker(String s, ArrayList<String> arr){
 		if (s.contains("EXIT")) {
 			s = s.replaceAll("EXIT", "");
 			arr.set(0, s);
-			deactivate = true;
-		} else if (s.contains("RETURN")) {
-			s = s.replaceAll("RETURN", "");
+			return -1;
+		} else if (s.contains("CONTINUE")) {
+			s = s.replaceAll("CONTINUE", "");
 			arr.set(0, s);
-		} else {
+			return 1;
+		}else if(s.contains("FINAL")){
+			s = s.replaceAll("FINAL", "");
 			arr.set(0, s);
+			return 2;
+		}else {
+			arr.set(0, s);
+			return 0;
 		}
 	}
 	

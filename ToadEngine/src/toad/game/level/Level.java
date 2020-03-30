@@ -53,9 +53,11 @@ public abstract class Level {
 			return;
 		}
 
+
 		for (Door d : doors) {
 			d.tick();
 		}
+		
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();

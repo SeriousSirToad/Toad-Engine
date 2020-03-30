@@ -3,12 +3,11 @@ package toad.game.level;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import toad.game.GameState;
-import toad.game.entities.Player;
+import toad.game.entities.Entity;
 
 public class Door {
 
-	Rectangle rect;
+	public Rectangle rect;
 	Level nativeLevel;
 	Level level;
 	Point tpLocation;
@@ -18,20 +17,21 @@ public class Door {
 		this.rect = rect;
 		this.level = level;
 		this.tpLocation = tpLocation;
+		this.nativeLevel = nativeLevel;
 		nativeLevel.doors.add(this);
 
 	}
 
 	public void tick() {
-		if (!GameState.camera.contains(rect.x, rect.y)) {
-			return;
-		}
-		Player player = GameState.player;
-		if (rect.intersects(player.collider)) {
-			player.setLevel(level);
-			player.x = (int) tpLocation.getX();
-			player.y = (int) tpLocation.getY();
-			player.collider = new Rectangle((int) tpLocation.getX() + 4, (int) tpLocation.getY() + 24, 7, 8);
+		for (int i = 0; i < nativeLevel.entities.size(); i++) {
+			Entity e = nativeLevel.entities.get(i);
+			if (rect.intersects(e.collider)) {
+				e.setLevel(level);
+				e.x = (int) tpLocation.getX();
+				e.y = (int) tpLocation.getY();
+				e.collider.x = (int) tpLocation.getX() + e.colliderLoc.x;
+				e.collider.y = (int) tpLocation.getY() + e.colliderLoc.y;
+			}
 		}
 	}
 
