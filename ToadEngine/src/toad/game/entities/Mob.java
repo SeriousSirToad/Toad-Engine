@@ -72,12 +72,17 @@ public abstract class Mob extends Entity {
 		if (xa != 0 || ya != 0) {
 			if (xa < 0) {
 				movingDir = 0;
-			} else if (xa > 0)
+				hz.update();
+			} else if (xa > 0) {
 				movingDir = 2;
-			else if (ya > 0)
+				hz.update();
+			} else if (ya > 0) {
 				movingDir = 1;
-			else
+				dn.update();
+			} else {
 				movingDir = 3;
+				up.update();
+			}
 			moving = true;
 		} else {
 			moving = false;

@@ -15,14 +15,10 @@ public class Animation {
 
 		frames = new BufferedImage[images.length];
 		this.frameSkip = j;
-		if (images.length < 2) {
-			this.skipFirst = false;
-		} else {
-			this.skipFirst = skipFirst;
-		}
+		this.skipFirst = skipFirst;
 		frames = images;
 		Main.main.animations.add(this);
-		
+
 	}
 
 	byte b = 0;
@@ -36,10 +32,6 @@ public class Animation {
 	public void update() {
 		b++;
 
-		if (skipFirst && frameIndex == 0) {
-			frameIndex++;
-		}
-
 		if (b >= frameSkip) {
 
 			frameIndex++;
@@ -48,7 +40,10 @@ public class Animation {
 		}
 
 		if (frameIndex >= frames.length) {
-			frameIndex = 0;
+			if (skipFirst)
+				frameIndex = 1;
+			else
+				frameIndex = 0;
 		}
 	}
 

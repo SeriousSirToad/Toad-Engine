@@ -24,7 +24,7 @@ public class lvl_bean extends Level {
 		new Apartment_generic(this, 116, 155);
 		new Tree(this, 338, 180, 0);
 		new Tree(this, 338, 256, 0);
-		new Cretin(this, 87, 86);
+		new Cretin(this, 100, 86);
 		shader.new Light(295, 152, 100, 2, Color.yellow);
 	}
 

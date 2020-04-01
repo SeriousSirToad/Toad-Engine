@@ -1,6 +1,8 @@
 package toad.gfx;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 public class Assets {
 
@@ -8,11 +10,9 @@ public class Assets {
 	static SpriteSheet buildings = new SpriteSheet("/images/ss_bldg.png");
 	// Mobs
 	public static final BufferedImage player = entities.getImage(0, 0, 16, 32);
-	public static final Animation pl_hz = new Animation(10, entities.getAnimation(288, 0, 16, 32, 6), true);
-	public static final Animation pl_dr = new Animation(10, entities.getAnimation(0, 0, 16, 32, 6), true);
-	public static final Animation pl_u = new Animation(15, entities.getAnimation(128, 0, 16, 32, 3), true);
-	public static final Animation pl_dn = new Animation(15, entities.getAnimation(192, 0, 16, 32, 3), true);
-	public static final Animation pl_ur = new Animation(10, entities.getAnimation(96, 0, 16, 32, 6), true);
+	public static final Animation pl_hz = new Animation(10, entities.getAnimation(0, 0, 16, 32, 9), true);
+	public static final Animation pl_u = new Animation(10, entities.getAnimation(256, 0, 16, 32, 3), true);
+	public static final Animation pl_dn = new Animation(10, entities.getAnimation(144, 0, 16, 32, 7), true);
 	
 	public static final BufferedImage npc1 = entities.getImage(0, 64, 16, 32);
 	
@@ -33,7 +33,7 @@ public class Assets {
 
 	//Decor
 	public static final BufferedImage counter = entities.getImage(0, 160, 32, 32);
-	public static final BufferedImage bed = entities.getImage(16, 192, 48, 32);
+	public static final BufferedImage bed = entities.getImage(16, 195, 48, 29);
 	
 	//Buildings
 	public static final BufferedImage shop = buildings.getImage(0, 0, 96, 80);
@@ -41,5 +41,12 @@ public class Assets {
 	public static final BufferedImage popostation = buildings.getImage(192, 0, 96, 80);
 	public static final BufferedImage apt_generic = buildings.getImage(0, 160, 96, 128);
 	public static final BufferedImage cabin = buildings.getImage(288, 0, 96, 80);
+	
+	public static BufferedImage deepCopy(BufferedImage bi) {
+		ColorModel cm = bi.getColorModel();
+		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+		WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
+		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+	}
 
 }

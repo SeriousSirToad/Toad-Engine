@@ -48,9 +48,24 @@ public class Camera {
 
 		if (level.scaledWidth() <= Main.width()) {
 			this.x = ((level.scaledWidth() / 2) - Main.width() / 2) / GameState.renderScale;
+		} else {
+			if (x < 0) {
+				x = 0;
+			}
+			if (x + Main.width() / GameState.renderScale > level.width) {
+				x = level.width - Main.width() / GameState.renderScale;
+			}
 		}
-		if (level.getHeight() <= Main.height()) {
-			this.y = ((level.getHeight() / 2) - Main.height() / 2) / GameState.renderScale;
+
+		if (level.scaledHeight() <= Main.height()) {
+			this.y = ((level.scaledHeight() / 2) - Main.height() / 2) / GameState.renderScale;
+		} else {
+			if (y < 0) {
+				y = 0;
+			}
+			if (y + Main.height() / GameState.renderScale > level.height) {
+				y = level.height - Main.height() / GameState.renderScale;
+			}
 		}
 
 	}
@@ -62,15 +77,9 @@ public class Camera {
 		int entw = entity.w * GameState.renderScale;
 		int enth = entity.h * GameState.renderScale;
 
-		if (x > -1 && entx > (Main.WIDTH / 2) - (entw / 2))
-			x = (entx - (Main.WIDTH / 2) + entw / 2) / GameState.renderScale;
-		else
-			x = 0;
+		x = (entx - (Main.WIDTH / 2) + entw / 2) / GameState.renderScale;
+		y = (enty - (Main.height() / 2) + enth / 2) / GameState.renderScale;
 
-		if (y > -1 && enty > (Main.height() / 2) - (enth / 2))
-			y = (enty - (Main.height() / 2) + enth / 2) / GameState.renderScale;
-		else
-			y = 0;
 	}
 
 	public void move(int x, int y) {

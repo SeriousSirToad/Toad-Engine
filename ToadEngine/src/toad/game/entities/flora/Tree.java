@@ -11,6 +11,7 @@ public class Tree extends Plant {
 		super(level, x, y, Assets.getTree(type), null);
 		this.type = type;
 		isSolid = true;
+		makeCollider(4, h - 7, 15, 12);
 	}
 
 }

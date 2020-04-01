@@ -31,7 +31,7 @@ public class Main extends Canvas implements Runnable {
 	static Dimension gameDimension;
 	public static InputHandler input;
 
-	public static boolean devOptions = true;
+	public static boolean devOptions = false;
 	public DevOptions devWindow;
 
 	public ArrayList<Animation> animations = new ArrayList<>();
@@ -152,9 +152,6 @@ public class Main extends Canvas implements Runnable {
 		} else {
 			menu.tick();
 		}
-
-		for (Animation a : animations)
-			a.update();
 		
 		if (devOptions) {
 			playerCoords = "x " + GameState.player.x + ", y " + GameState.player.y;

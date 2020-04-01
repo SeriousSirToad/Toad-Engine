@@ -1,5 +1,6 @@
 package toad.gfx;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

@@ -46,7 +46,7 @@ public class Cretin extends Mob {
 				if (dir2 == 1)
 					ya--;
 			}
-			clockspeed = r.nextInt(60);
+			clockspeed = r.nextInt(60) + 1;
 		}
 
 		move(xa, ya);

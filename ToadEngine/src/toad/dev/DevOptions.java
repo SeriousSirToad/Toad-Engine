@@ -59,7 +59,7 @@ public class DevOptions extends Canvas {
 	GameButton Animpreview = new GameButton(0, 0, 16, 8, input, buttons) {
 		public void onClick() {
 			if (!previewActive) {
-				activePreview = new AnimationPreview(Assets.pl_dr);
+				activePreview = new AnimationPreview(Assets.pl_u);
 				previewActive = true;
 			} else {
 				activePreview.close();
@@ -71,7 +71,7 @@ public class DevOptions extends Canvas {
 	GameButton previewup = new GameButton(0, 8, 16, 8, input, buttons) {
 		public void onClick() {
 			if (!previewActive) {
-				activePreview = new AnimationPreview(Assets.pl_ur);
+				activePreview = new AnimationPreview(Assets.pl_dn);
 				previewActive = true;
 			} else {
 				activePreview.close();

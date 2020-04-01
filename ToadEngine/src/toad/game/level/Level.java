@@ -49,6 +49,7 @@ public abstract class Level {
 
 		if (!initialized) {
 			init();
+			colliders.add(new Rectangle(width, 24));
 			initialized = true;
 			return;
 		}
@@ -95,7 +96,7 @@ public abstract class Level {
 		return (int) (width * GameState.renderScale);
 	}
 
-	public int getHeight() {
+	public int scaledHeight() {
 		return (int) (height * GameState.renderScale);
 	}
 
