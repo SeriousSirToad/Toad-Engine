@@ -1,6 +1,5 @@
 package toad.game.entities;
 
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -12,14 +11,10 @@ import toad.gfx.Animation;
 
 public abstract class Mob extends Entity {
 
-	public int speed = 1;
-	protected boolean moving = false;
+	public float speed = 1f;
 	protected Animation hz;
 	protected Animation up;
 	protected Animation dn;
-	protected int movingDir = 0;
-	protected int HZDir = 0; // where hes facing horizontally, can be -1, 0, or 1
-	protected int VDir = 0;
 	protected String name;
 	protected ArrayList<Item> inventory = new ArrayList<>();
 	protected boolean isNPC = false;
@@ -29,6 +24,7 @@ public abstract class Mob extends Entity {
 		this.hz = hz;
 		this.up = up;
 		this.dn = dn;
+		animations = new Animation[]{hz, up, dn};
 		isMob = true;
 	}
 
@@ -46,91 +42,6 @@ public abstract class Mob extends Entity {
 
 	@Override
 	public abstract void update();
-
-	public void move(int xa, int ya) {
-
-		for (Rectangle r : level.colliders) {
-
-			if (xa != 0 && ya != 0) {
-				if (!hasCollided(0, ya, r)) {
-					move(0, ya);
-				}
-				if (!hasCollided(xa, 0, r)) {
-					move(xa, 0);
-				}
-				return;
-			} else {
-
-				if (hasCollided(xa, ya, r)) {
-					return;
-				}
-
-			}
-
-		}
-
-		if (xa != 0 || ya != 0) {
-			if (xa < 0) {
-				movingDir = 0;
-				hz.update();
-			} else if (xa > 0) {
-				movingDir = 2;
-				hz.update();
-			} else if (ya > 0) {
-				movingDir = 1;
-				dn.update();
-			} else {
-				movingDir = 3;
-				up.update();
-			}
-			moving = true;
-		} else {
-			moving = false;
-		}
-
-		x += xa;
-		y += ya;
-		collider.x += xa;
-		collider.y += ya;
-
-		if (x < 0) {
-			x += speed;
-			collider.x += speed;
-		}
-		if (x + w > level.width) {
-			x -= speed;
-			collider.x -= speed;
-		}
-		if (y < 0) {
-			y += speed;
-			collider.y += speed;
-		}
-		if (y + h > level.height) {
-			y -= speed;
-			collider.y -= speed;
-		}
-
-	}
-
-	public boolean hasCollided(int xa, int ya, Rectangle other) {
-
-		Rectangle temp = new Rectangle(collider.x + xa, collider.y + ya, collider.width, collider.height);
-
-		if (temp.intersects(other)) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public boolean hasCollided(Rectangle other) {
-
-		if (collider.intersects(other)) {
-			return true;
-		}
-
-		return false;
-	}
 
 	public void render() {
 		if (GameState.camera.contains(this)) {
@@ -159,6 +70,7 @@ public abstract class Mob extends Entity {
 			}
 
 		}
+		Main.g.drawRect(collider.x - GameState.camera.x, collider.y - GameState.camera.y, collider.width, collider.height);;
 	}
 
 }
