@@ -5,14 +5,14 @@ import java.util.Random;
 
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
-import toad.ui.GameWindow;
+import toad.ui.DialogWindow;
 
 public class NPC_generic extends NPC {
 
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
 		name = genericNamer();
-		npcwindow = new GameWindow(name, message[0], 100, 80, null);
+		npcwindow = new DialogWindow(name, message[0], 100, 80, null, "text/testText2.txt");
 		zone = new ActionZone(level, collider, npcwindow);
 	}
 	

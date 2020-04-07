@@ -1,0 +1,4 @@
+2
+"H-Hey buddy- Need some poop?" | "Why would i ever want to buy poop?" 1 | "Yes i would" 2 | "Um.. i gotta go." // 
+"Poop is good for you, rub it on your skin and you will look awesome!' | "Okay, i'll take some" 2 | "How about no" //
+"Great! Here is on unrefined poop bag" | "Thank you" //
