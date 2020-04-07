@@ -70,7 +70,6 @@ public abstract class Mob extends Entity {
 			}
 
 		}
-		Main.g.drawRect(collider.x - GameState.camera.x, collider.y - GameState.camera.y, collider.width, collider.height);;
 	}
 
 }

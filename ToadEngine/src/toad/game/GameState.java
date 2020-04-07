@@ -14,14 +14,11 @@ public class GameState {
 	public static int levelSeason = 0;
 	public static boolean running = false;
 	
-	private static final String welcomeMessage = "penispenispenispenispenispenispenis\n"
-											   + "penispenispenispenispenispenispe\n"
-											   + "nispenispenispenispenispenispenis\n"
-											   + "penis";
+	private static final String welcomeMessage = "hi";
 	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, null);
 
 	public static void init() {
-		currentLevel = Level.test;
+		currentLevel = Level.bean;
 		currentLevel.tick();
 		player = new Player(currentLevel, currentLevel.width - 50, 10);
 		camera = new Camera(0, 0, player);

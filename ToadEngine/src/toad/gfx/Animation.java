@@ -21,8 +21,6 @@ public class Animation {
 
 	}
 
-	byte b = 0;
-
 	long lastTime = System.currentTimeMillis();
 
 	public BufferedImage animate() {
@@ -40,13 +38,6 @@ public class Animation {
 		}
 
 		return frames[frameIndex];
-
-	}
-
-	public void reset() {
-
-		b = 0;
-		frameIndex = 0;
 
 	}
 

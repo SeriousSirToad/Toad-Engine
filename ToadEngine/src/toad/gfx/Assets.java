@@ -8,6 +8,7 @@ public class Assets {
 
 	static SpriteSheet entities = new SpriteSheet("/images/ss_entity.png");
 	static SpriteSheet buildings = new SpriteSheet("/images/ss_bldg.png");
+	static SpriteSheet texture = new SpriteSheet("/images/ss_texture.png");
 	// Mobs
 	public static final BufferedImage player = entities.getImage(0, 0, 16, 32);
 	public static final Animation pl_hz = new Animation(10, entities.getAnimation(0, 0, 16, 32, 9), true);
@@ -25,7 +26,7 @@ public class Assets {
 	public static BufferedImage getTree(int type) {
 		switch (type) {
 		case 1:
-			return entities.getImage(32, 96, 32, 64);
+			return entities.getImage(35, 96, 25, 53);
 		default:
 			return entities.getImage(3, 107, 25, 53);
 		}
@@ -48,5 +49,7 @@ public class Assets {
 		WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
 		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 	}
+	
+	public static BufferedImage[] textures = {texture.getImage(16, 0, 32, 32)};
 
 }

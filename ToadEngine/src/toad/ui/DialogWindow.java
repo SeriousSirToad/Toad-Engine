@@ -1,10 +1,11 @@
 package toad.ui;
 
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class DialogWindow extends GameWindow {
@@ -13,16 +14,16 @@ public class DialogWindow extends GameWindow {
 
 	public DialogWindow(String title, String body, int w, int h, String buttonName, String textFile) {
 		super(title, body, w, h, buttonName);
-		FileReader fr;
-		BufferedReader br;
+		FileInputStream fr;
+		Scanner sc;
 		try {
-			fr = new FileReader(textFile);
-			br = new BufferedReader(fr);
-			mapSize = br.read();
+			fr = new FileInputStream(new File(textFile));
+			sc = new Scanner(fr);
+			mapSize = sc.nextInt();
 			ArrayList<String> textList = new ArrayList<>();
 			for (int a = 0; a < mapSize; a++) {
 				int currIndex = 0;
-				String rawText = br.readLine();
+				String rawText = sc.nextLine();
 				while (rawText.contains("|")) {
 					String temp = rawText.substring(currIndex, rawText.indexOf("|"));
 					currIndex = rawText.indexOf("|");

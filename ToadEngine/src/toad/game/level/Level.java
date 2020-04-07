@@ -56,7 +56,7 @@ public abstract class Level {
 			topwall = new Rectangle(0, 0, width, 24);
 			leftwall = new Rectangle(-1, 0, 1, height);
 			rightwall = new Rectangle(width, 0, 1, height);
-			bottomwall = new Rectangle(0, height, width, 1);
+			bottomwall = new Rectangle(0, height+1, width, 1);
 			colliders.add(topwall);
 			colliders.add(leftwall);
 			colliders.add(rightwall);
