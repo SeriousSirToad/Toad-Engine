@@ -29,6 +29,10 @@ public abstract class Level {
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	public ArrayList<Rectangle> colliders = new ArrayList<Rectangle>();
 	public ArrayList<Door> doors = new ArrayList<Door>();
+	public Rectangle topwall;
+	Rectangle leftwall;
+	Rectangle rightwall;
+	Rectangle bottomwall;
 
 	public static Level bean = new lvl_bean();
 	public static Level test = new lvl_test();
@@ -49,16 +53,22 @@ public abstract class Level {
 
 		if (!initialized) {
 			init();
-			colliders.add(new Rectangle(width, 24));
+			topwall = new Rectangle(0, 0, width, 24);
+			leftwall = new Rectangle(-1, 0, 1, height);
+			rightwall = new Rectangle(width, 0, 1, height);
+			bottomwall = new Rectangle(0, height, width, 1);
+			colliders.add(topwall);
+			colliders.add(leftwall);
+			colliders.add(rightwall);
+			colliders.add(bottomwall);
 			initialized = true;
 			return;
 		}
 
-
 		for (Door d : doors) {
 			d.tick();
 		}
-		
+
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();

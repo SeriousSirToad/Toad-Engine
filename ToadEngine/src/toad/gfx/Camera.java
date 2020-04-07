@@ -1,6 +1,8 @@
 package toad.gfx;
 
 import java.awt.Color;
+import java.awt.Rectangle;
+
 import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
@@ -95,6 +97,17 @@ public class Camera {
 		return true;
 	}
 
+	public boolean contains(Rectangle r) {
+		int ex = r.x * GameState.renderScale;
+		int ey = r.y * GameState.renderScale;
+		int ew = r.width * GameState.renderScale;
+		int eh = r.height * GameState.renderScale;
+		if (ex + ew < x || ey + eh < y) {
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean contains(Entity e) {
 		int ex = e.x * GameState.renderScale;
 		int ey = e.y * GameState.renderScale;

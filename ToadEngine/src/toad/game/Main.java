@@ -31,7 +31,7 @@ public class Main extends Canvas implements Runnable {
 	static Dimension gameDimension;
 	public static InputHandler input;
 
-	public static boolean devOptions = false;
+	public static boolean devOptions = true;
 	public DevOptions devWindow;
 
 	public ArrayList<Animation> animations = new ArrayList<>();

@@ -23,28 +23,24 @@ public class Animation {
 
 	byte b = 0;
 
+	long lastTime = System.currentTimeMillis();
+
 	public BufferedImage animate() {
+
+		long now = System.currentTimeMillis();
+		if ((now - lastTime) / 16 >= frameSkip) {
+			frameIndex++;
+			if (frameIndex >= frames.length) {
+				if (skipFirst)
+					frameIndex = 1;
+				else
+					frameIndex = 0;
+			}
+			lastTime = now;
+		}
 
 		return frames[frameIndex];
 
-	}
-
-	public void update() {
-		b++;
-
-		if (b >= frameSkip) {
-
-			frameIndex++;
-			b = 0;
-
-		}
-
-		if (frameIndex >= frames.length) {
-			if (skipFirst)
-				frameIndex = 1;
-			else
-				frameIndex = 0;
-		}
 	}
 
 	public void reset() {

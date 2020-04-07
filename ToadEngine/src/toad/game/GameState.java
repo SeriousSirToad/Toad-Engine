@@ -21,10 +21,10 @@ public class GameState {
 	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, null);
 
 	public static void init() {
-		Level.bean.tick();
-		player = Level.bean.player;
+		currentLevel = Level.test;
+		currentLevel.tick();
+		player = new Player(currentLevel, currentLevel.width - 50, 10);
 		camera = new Camera(0, 0, player);
-		currentLevel = player.getLevel();
 	}
 
 	public static int gameWidth() {

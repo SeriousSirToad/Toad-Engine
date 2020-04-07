@@ -1,6 +1,6 @@
 package toad.game.level;
 
-import toad.game.entities.flora.Tree;
+import java.awt.Rectangle;
 
 public class lvl_test extends Level {
 
@@ -10,7 +10,7 @@ public class lvl_test extends Level {
 	}
 
 	public void init() {
-		new Tree(this, 500, 0, 1);
+		colliders.add(new Rectangle(223, 0, 32, 248));
 	}
 
 }
