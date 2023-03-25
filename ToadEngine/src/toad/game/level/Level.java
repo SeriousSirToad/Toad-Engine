@@ -40,7 +40,6 @@ public abstract class Level {
 	public int height = 0;
 
 	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
-
 		@Override
 		public int compare(Entity a, Entity b) {
 			if (a.y + a.h < b.y + b.h)
@@ -70,8 +69,7 @@ public abstract class Level {
 		}
 
 		for (int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			e.tick();
+			entities.get(i).tick();
 		}
 
 	}
@@ -84,6 +82,9 @@ public abstract class Level {
 		entities.sort(entitySorter);
 		for (Entity e : entities) {
 			e.render();
+		}
+		for (Door d : doors) {
+			d.render();
 		}
 		shader.update();
 	}

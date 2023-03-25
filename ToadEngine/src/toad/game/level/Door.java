@@ -3,6 +3,8 @@ package toad.game.level;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import toad.game.GameState;
+import toad.game.Main;
 import toad.game.entities.Entity;
 
 public class Door {
@@ -27,12 +29,18 @@ public class Door {
 			Entity e = nativeLevel.entities.get(i);
 			if (rect.intersects(e.collider)) {
 				e.setLevel(level);
-				e.x = (int) tpLocation.getX();
-				e.y = (int) tpLocation.getY();
-				e.collider.x = (int) tpLocation.getX() + e.colliderLoc.x;
-				e.collider.y = (int) tpLocation.getY() + e.colliderLoc.y;
+				e.teleport(tpLocation.x, tpLocation.y);
+				//e.x = (int) tpLocation.getX();
+				//e.y = (int) tpLocation.getY();
+				//e.collider.x = (int) tpLocation.getX() + e.colliderLoc.x;
+				//e.collider.y = (int) tpLocation.getY() + e.colliderLoc.y;
 			}
 		}
+	}
+	
+	public void render() {
+		Main.g.drawRect(rect.x - GameState.camera.x, rect.y - GameState.camera.y, rect.width, rect.height);
+		Main.g.drawRect(tpLocation.x - GameState.camera.x, tpLocation.y - GameState.camera.y, 1, 1);
 	}
 
 }

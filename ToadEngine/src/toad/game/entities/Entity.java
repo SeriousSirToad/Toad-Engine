@@ -160,5 +160,12 @@ public abstract class Entity {
 
 		return false;
 	}
+	
+	public void teleport(int x, int y) {
+		this.xf = x;
+		this.yf = y;
+		collider.x = y + colliderLoc.x;
+		collider.y = y + colliderLoc.y;
+	}
 
 }

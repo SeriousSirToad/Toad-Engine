@@ -12,7 +12,7 @@ public class NPC_generic extends NPC {
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
 		name = genericNamer();
-		npcwindow = new DialogWindow(name, message[0], 100, 80, null, "/text/testText2.txt");
+		npcwindow = new DialogWindow(name, message[0], 100, 80, null);
 		zone = new ActionZone(level, collider, npcwindow);
 	}
 	
