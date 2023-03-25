@@ -20,7 +20,7 @@ public class GameState {
 	public static void init() {
 		currentLevel = Level.bean;
 		currentLevel.tick();
-		player = new Player(currentLevel, currentLevel.width - 50, 10);
+		player = new Player(currentLevel, 5, 10);
 		camera = new Camera(0, 0, player);
 	}
 

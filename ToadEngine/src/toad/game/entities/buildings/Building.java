@@ -14,6 +14,7 @@ import toad.game.level.Level;
 public class Building extends Entity {
 
 	public Door door;
+	public Door doorInterior;
 	public boolean inside = false;
 	public Level interior;
 	public Rectangle renderBounds;
@@ -46,10 +47,12 @@ public class Building extends Entity {
 	// y coords
 	// to make it customizeable as to where the door is relative to the building 
 	protected void makeStandardDoor(int x, int y) {
+		//makes the collider for the door that leads to the interior
 		Rectangle doorRect = new Rectangle(this.x + x, this.y + this.h - y, 32, 1);
+		//creates the corresponding interior door
 		Rectangle door2 = new Rectangle(interior.width / 2 - 16, interior.height - 1, 32, 8);
-		door = new Door(level, doorRect, interior, new Point(interior.width / 2 - 8, interior.height - 33));
-		new Door(interior, door2, level, new Point(this.x + x + 8, this.y + this.h - y - 23));
+		door = new Door(level, doorRect, interior, new Point(24, 24));
+		doorInterior = new Door(interior, door2, level, new Point(24, 24));
 	}
 
 }

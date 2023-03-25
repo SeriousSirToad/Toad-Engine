@@ -101,11 +101,11 @@ public class Main extends Canvas implements Runnable {
 				shouldRender = true;
 			}
 
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		//	try {
+		//		Thread.sleep(1);
+		//	} catch (InterruptedException e) {
+		//		e.printStackTrace();
+		//	}
 
 			if (shouldRender) {
 				render();
