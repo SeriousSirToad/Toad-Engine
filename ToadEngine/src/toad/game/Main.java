@@ -175,8 +175,6 @@ public class Main extends Canvas implements Runnable {
 
 	boolean showCoords = false;
 	
-	
-	
 	public void render() {
 
 		// Creating graphics object
