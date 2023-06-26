@@ -6,7 +6,7 @@ import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.entities.objects.Bed;
 import toad.game.level.Level;
-import toad.ui.DialogTip;
+import toad.ui.InteractionTip;
 import toad.ui.GameWindow;
 
 public class int_apartment extends Level {
@@ -20,8 +20,7 @@ public class int_apartment extends Level {
 		ActionZone a = new ActionZone(
 				this, new Rectangle(112, 47, 64, 54), new GameWindow("Bed", "", 100, 80, "Sleep"), Main.input.E
 		);
-		a.setDialogTip(new DialogTip("E", 160, 47, 6, 6));
+		a.setInteractionTip(new InteractionTip("E", 160, 47, 6, 6));
 		new Bed(this, 128, 52);
 	}
-
 }

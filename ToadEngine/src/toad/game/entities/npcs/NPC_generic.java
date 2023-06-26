@@ -1,14 +1,12 @@
 package toad.game.entities.npcs;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
-import toad.io.InputHandler;
-import toad.ui.DialogTip;
+import toad.ui.InteractionTip;
 import toad.ui.DialogWindow;
 
 public class NPC_generic extends NPC {
@@ -18,7 +16,7 @@ public class NPC_generic extends NPC {
 		name = genericNamer();
 		npcwindow = new DialogWindow(name, message[0], 100, 80, "Close");
 		zone = new ActionZone(level, collider, npcwindow, Main.input.E);
-		zone.setDialogTip( new DialogTip("E", collider.x + 5, collider.y - 26, 6, 6));
+		zone.setInteractionTip( new InteractionTip("E", collider.x + 5, collider.y - 26, 6, 6));
 	}
 	
 	int iteration = 0;

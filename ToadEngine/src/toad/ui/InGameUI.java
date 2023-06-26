@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import toad.game.Main;
@@ -12,7 +11,7 @@ import toad.game.Main;
 public class InGameUI {
 
 	private static ArrayList<GameWindow> windows = new ArrayList<>();
-	private static ArrayList<DialogTip> tips = new ArrayList<>();
+	private static ArrayList<InteractionTip> tips = new ArrayList<>();
 	private static ArrayList<String> strings = new ArrayList<>();
 	static int totalStringWidth = 0;
 
@@ -28,7 +27,7 @@ public class InGameUI {
 				w.update();
 			}
 			for (int i = 0; i < tips.size(); i++) {
-				DialogTip tip = tips.get(i);
+				InteractionTip tip = tips.get(i);
 				tip.update();
 			}
 		}
@@ -47,8 +46,8 @@ public class InGameUI {
 		windows.add(window);
 	}
 
-	public static void addToRendOrder(DialogTip dialogTip) {
-		tips.add(dialogTip);
+	public static void addToRendOrder(InteractionTip interactionTip) {
+		tips.add(interactionTip);
 	}
 
 	public static int addToRendOrder(String s) {
@@ -74,8 +73,8 @@ public class InGameUI {
 		windows.remove(window);
 	}
 
-	public static void removeFromRendOrder(DialogTip dialogTip) {
-		tips.remove(dialogTip);
+	public static void removeFromRendOrder(InteractionTip interactionTip) {
+		tips.remove(interactionTip);
 	}
 
 	public static void removeFromRendOrder(String s) {

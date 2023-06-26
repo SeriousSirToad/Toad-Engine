@@ -7,7 +7,7 @@ import java.awt.*;
 
 import static toad.ui.GameWindow.bodyFont;
 
-public class DialogTip{
+public class InteractionTip {
 
     private String text;
     private final Color tipColor;
@@ -15,7 +15,7 @@ public class DialogTip{
 
     public boolean active;
 
-    public DialogTip(String text, int x, int y, int w, int h) {
+    public InteractionTip(String text, int x, int y, int w, int h) {
         tipColor = new Color(42, 42, 42, 200);
         this.w = w;
         this.h = h;

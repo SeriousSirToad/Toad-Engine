@@ -3,17 +3,16 @@ package toad.game.entities;
 import java.awt.Rectangle;
 
 import toad.game.GameState;
-import toad.game.Main;
 import toad.game.level.Level;
 import toad.io.InputHandler;
-import toad.ui.DialogTip;
+import toad.ui.InteractionTip;
 import toad.ui.GameWindow;
 
 public class ActionZone extends Entity {
 	public Rectangle bounds;
 	public GameWindow gw;
 	public InputHandler.Key key;
-	public DialogTip dialogTip;
+	public InteractionTip interactionTip;
 
 	public ActionZone(Level level, Rectangle bounds, GameWindow gw, InputHandler.Key key) {
 		super(level, bounds.x, bounds.y, null);
@@ -52,22 +51,22 @@ public class ActionZone extends Entity {
 			gw.deactivate();
 		}
 
-		if (dialogTip != null)
+		if (interactionTip != null)
 			updateTip();
 	}
 
 	private void updateTip() {
 		if (bounds.intersects(GameState.player.collider)) {
 			if (!gw.active)
-				dialogTip.activate();
+				interactionTip.activate();
 			else
-				dialogTip.deactivate();
+				interactionTip.deactivate();
 		}
 
-		if (!bounds.intersects(GameState.player.collider) && (gw.active || dialogTip.active) ){
-			dialogTip.deactivate();
+		if (!bounds.intersects(GameState.player.collider) && (gw.active || interactionTip.active) ){
+			interactionTip.deactivate();
 		}
 	}
 
-	public void setDialogTip(DialogTip tip) { dialogTip = tip; }
+	public void setInteractionTip(InteractionTip tip) { interactionTip = tip; }
 }
