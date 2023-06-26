@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
@@ -32,7 +33,7 @@ public class Menu {
 
 	public Menu() {
 		try {
-			menuImage = ImageIO.read(getClass().getResource("/images/titleScreen.png"));
+			menuImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/titleScreen.png")));
 		} catch (IOException e) {
 			System.out.println("bruh moment has occured");
 		}

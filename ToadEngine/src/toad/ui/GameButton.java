@@ -156,7 +156,7 @@ public class GameButton {
 
 		if (text != null) {
 			g.setColor(Color.white);
-			g.drawString(text, x, y + (height / 2 + font.getSize() / 2));
+			g.drawString(text, x + 2, y + (height / 2 + font.getSize() / 2));
 		}
 
 	}

@@ -17,7 +17,7 @@ public class Animation {
 		this.frameSkip = j;
 		this.skipFirst = skipFirst;
 		frames = images;
-		Main.main.animations.add(this);
+		Main.animations.add(this);
 
 	}
 

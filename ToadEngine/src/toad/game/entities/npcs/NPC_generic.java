@@ -3,8 +3,10 @@ package toad.game.entities.npcs;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import toad.game.Main;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
+import toad.io.InputHandler;
 import toad.ui.DialogWindow;
 
 public class NPC_generic extends NPC {
@@ -12,8 +14,8 @@ public class NPC_generic extends NPC {
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
 		name = genericNamer();
-		npcwindow = new DialogWindow(name, message[0], 100, 80, null);
-		zone = new ActionZone(level, collider, npcwindow);
+		npcwindow = new DialogWindow(name, message[0], 100, 80, "Close");
+		zone = new ActionZone(level, collider, npcwindow, Main.input.E);
 	}
 	
 	int iteration = 0;

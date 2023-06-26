@@ -117,7 +117,7 @@ public class DevOptions extends Canvas {
 			b.tick();
 		}
 		
-		g.drawString("" + Main.main.frames, 100, 100);
+		g.drawString("" + Main.frames, 100, 100);
 
 		if (previewActive)
 			activePreview.render();

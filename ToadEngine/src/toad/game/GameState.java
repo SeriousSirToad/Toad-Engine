@@ -15,7 +15,7 @@ public class GameState {
 	public static boolean running = false;
 	
 	private static final String welcomeMessage = "hi";
-	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, null);
+	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, "Close");
 
 	public static void init() {
 		currentLevel = Level.bean;

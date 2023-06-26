@@ -23,6 +23,7 @@ public class GameWindow {
 	public boolean active;
 
 	Color colour = new Color(0, 0, 0, 200);
+	Color tipColor = new Color(42, 42, 42, 200);
 
 	public GameWindow(String title, String body, int w, int h, String buttonName) {
 		this.buttonName = buttonName;
@@ -41,8 +42,10 @@ public class GameWindow {
 		this.w = w;
 		this.h = h;
 		System.out.println("w " + w);
-		x = (GameState.gameWidth() / 2) - w / 2;
-		y = (GameState.gameHeight() / 2) - h / 2;
+		this.x = (GameState.gameWidth() / 2) - w / 2;
+		this.y = (GameState.gameHeight() / 2) - h / 2;
+
+		if (buttonName == null) return;
 		buttons.add(new GameButton(x + (w / 2) - (GameButton.stdWidth / 2), y + h - GameButton.stdHeight, buttonName,
 				bodyFont) {
 			public void onClick() {
@@ -71,29 +74,41 @@ public class GameWindow {
 	}
 
 	public void show() {
-
 		Graphics g = Main.g;
-		g.setColor(colour);
-		g.fillRect(x, y, w, h);
-		g.setColor(Color.white);
-		g.drawRect(x, y, w, h);
-		for (GameButton b : buttons) {
-			b.render(g);
+
+		if (buttonName != null) {
+			g.setColor(colour);
+			g.fillRect(x, y, w, h);
+
+			g.setColor(Color.white);
+			g.drawRect(x, y, w, h);
+
+			for (GameButton b : buttons) {
+				b.render(g);
+			}
+		} else {
+			g.setColor(tipColor);
+			g.fillOval(x, y, w, h);
 		}
 		showText(g);
-
+		g.setFont(InGameUI.standardFont);
 	}
 
 	public void showText(Graphics g) {
-
 		g.setColor(Color.white);
+
 		g.drawString(title, x + 1, y + InGameUI.standardFont.getSize() + 1);
 		g.setFont(bodyFont);
+
+		// For 'E' dialogs
+		if (title.equals("")) {
+			g.drawString(body, x, y + 4);
+			return;
+		}
+
 		int tempy = y + InGameUI.standardFont.getSize() + 1;
 		for (String line : body.split("\n"))
 			g.drawString(line, x + 1, tempy += g.getFontMetrics().getHeight());
-		g.setFont(InGameUI.standardFont);
-
 	}
 
 	public void setTitle(String title) {

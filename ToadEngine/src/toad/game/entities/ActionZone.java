@@ -9,7 +9,7 @@ import toad.ui.GameWindow;
 
 public class ActionZone extends Entity {
 	public Rectangle bounds;
-	public GameWindow gw;
+	public GameWindow gw, dialogTip;
 	public InputHandler.Key key;
 
 	public ActionZone(Level level, Rectangle bounds, GameWindow gw, InputHandler.Key key) {
@@ -21,6 +21,8 @@ public class ActionZone extends Entity {
 		this.h = bounds.height;
 		this.gw = gw;
 		this.key = key;
+
+		dialogTip = new GameWindow("", "'E'", 5, 5, null);
 	}
 
 	public ActionZone(Level level, Rectangle bounds, GameWindow gw) {
@@ -36,17 +38,20 @@ public class ActionZone extends Entity {
 	@Override
 	public void update() {
 		if (bounds.intersects(GameState.player.collider)) {
+			if (!gw.active) dialogTip.activate();
 			if (key != null && key.pressedAndReleased())
-				if (!gw.active)
+				if (!gw.active) {
 					gw.activate();
+					dialogTip.deactivate();
+				}
 			if (key == null)
 				if (!gw.active)
 					gw.activate();
 		}
 		
-		if (!bounds.intersects(GameState.player.collider) && gw.active){
-			gw.deactivate(); 
+		if (!bounds.intersects(GameState.player.collider) && (gw.active || dialogTip.active) ){
+			gw.deactivate();
+			dialogTip.deactivate();
 		} 
 	}
-
 }

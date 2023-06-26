@@ -5,6 +5,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -16,11 +17,10 @@ import toad.ui.InGameUI;
 
 public class Main extends Canvas implements Runnable {
 
+	@Serial
 	private static final long serialVersionUID = -5198863677834462653L;
 
 	public int tickCount;
-
-	public static Main main;
 
 	public static int WIDTH = 800;
 	public static int HEIGHT = 600;
@@ -34,15 +34,13 @@ public class Main extends Canvas implements Runnable {
 	public static boolean devOptions = true;
 	public DevOptions devWindow;
 
-	public ArrayList<Animation> animations = new ArrayList<>();
+	public static ArrayList<Animation> animations = new ArrayList<>();
 	
 	public static Menu menu;
 
 	public Main() {
-		
-		main = this;
 
-		gameDimension = new Dimension((int) (WIDTH), (int) (HEIGHT));
+		gameDimension = new Dimension(WIDTH, HEIGHT);
 		frame.setTitle(NAME);
 		frame.setSize(gameDimension);
 		frame.setPreferredSize(gameDimension);
@@ -57,7 +55,7 @@ public class Main extends Canvas implements Runnable {
 		input = new InputHandler(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		System.out.println(WIDTH + ", " + HEIGHT);
+		System.out.println("Game Dimensions: " + WIDTH + ", " + HEIGHT);
 
 		menu = new Menu();
 
@@ -65,7 +63,7 @@ public class Main extends Canvas implements Runnable {
 
 	String playerCoords;
 
-	public float frames = 0;
+	public static int frames = 0;
 
 	@Override
 	public void run() {
@@ -73,7 +71,7 @@ public class Main extends Canvas implements Runnable {
 		double nsPerTick = 1000000000D / 60;
 		@SuppressWarnings("unused")
 		int ticks = 0;
-		float frames = 0;
+		int frames = 0;
 		long lastTimer = System.currentTimeMillis();
 		double delta = 0;
 		double delta2 = 0;
@@ -87,7 +85,7 @@ public class Main extends Canvas implements Runnable {
 			long now = System.nanoTime();
 			double renderTime = 1000000000D / 60;
 			delta += (now - lastTime) / nsPerTick;
-			delta2 += (now - lastTime) / renderTime;
+			delta2 += (now - lastTime) / renderTime;  // Not quite sure what this does
 			lastTime = now;
 			boolean shouldRender = true;
 			while (delta >= 1) {
@@ -96,18 +94,18 @@ public class Main extends Canvas implements Runnable {
 				delta -= 1;
 			}
 
-			while (delta2 >= 1) {
+			while (delta2 >= 1) {   // Not quite sure what this does
 				delta2 -= 1;
 				shouldRender = true;
 			}
 
 		//	try {
 		//		Thread.sleep(1);
-		//	} catch (InterruptedException e) {
+		//	} catch (InterruptedException e) {   Not quite sure why this is here
 		//		e.printStackTrace();
 		//	}
 
-			if (shouldRender) {
+			if (shouldRender) {   // shouldRender is currently always true. When is it false?
 				render();
 				frames++;
 			}
@@ -209,11 +207,11 @@ public class Main extends Canvas implements Runnable {
 	}
 
 	public static int width() {
-		return (int) (WIDTH);
+		return WIDTH;
 	}
 
 	public static int height() {
-		return (int) (HEIGHT);
+		return HEIGHT;
 	}
 
 	public static void main(String[] args) {
