@@ -85,7 +85,7 @@ public class Main extends Canvas implements Runnable {
 			long now = System.nanoTime();
 			double renderTime = 1000000000D / 60;
 			delta += (now - lastTime) / nsPerTick;
-			delta2 += (now - lastTime) / renderTime;  // Not quite sure what this does
+			delta2 += (now - lastTime) / renderTime;
 			lastTime = now;
 			boolean shouldRender = true;
 			while (delta >= 1) {
@@ -94,18 +94,18 @@ public class Main extends Canvas implements Runnable {
 				delta -= 1;
 			}
 
-			while (delta2 >= 1) {   // Not quite sure what this does
+			while (delta2 >= 1) {
 				delta2 -= 1;
 				shouldRender = true;
 			}
 
 		//	try {
 		//		Thread.sleep(1);
-		//	} catch (InterruptedException e) {   Not quite sure why this is here
+		//	} catch (InterruptedException e) {
 		//		e.printStackTrace();
 		//	}
 
-			if (shouldRender) {   // shouldRender is currently always true. When is it false?
+			if (shouldRender) {
 				render();
 				frames++;
 			}

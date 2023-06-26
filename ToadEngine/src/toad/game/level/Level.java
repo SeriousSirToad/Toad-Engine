@@ -68,14 +68,13 @@ public abstract class Level {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
 		}
-
 	}
 
 	public Shader shader = new Shader(new Color(0, 0, 0), 0.0);
 
 	public void render() {
 		Graphics g = Main.g;
-		g.drawImage(image, 0 - GameState.camera.x, 0 - GameState.camera.y, width, height, null);
+		g.drawImage(image, -GameState.camera.x, -GameState.camera.y, width, height, null);
 		entities.sort(entitySorter);
 		for (Entity e : entities) {
 			e.render();

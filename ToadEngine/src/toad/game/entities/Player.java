@@ -34,7 +34,6 @@ public class Player extends Mob {
 		}
 
 		move(xa, ya);
-
 	}
 
 

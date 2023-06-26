@@ -100,6 +100,7 @@ public abstract class Entity {
 
 		x = Math.round(xf);
 		y = Math.round(yf);
+
 		collider.x = colliderLoc.x + x;
 		collider.y = colliderLoc.y + y;
 	}
@@ -154,6 +155,7 @@ public abstract class Entity {
 	public void teleport(int x, int y) {
 		this.xf = x;
 		this.yf = y;
+		tick();
 		collider.x = y + colliderLoc.x;
 		collider.y = y + colliderLoc.y;
 	}

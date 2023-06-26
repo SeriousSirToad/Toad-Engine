@@ -76,7 +76,6 @@ public class Camera {
 				y = level.height - Main.height() / GameState.renderScale;
 			}
 		}
-
 	}
 
 	public void followEntity() {
@@ -88,7 +87,6 @@ public class Camera {
 
 		x = (entx - (Main.WIDTH / 2) + entw / 2) / GameState.renderScale;
 		y = (enty - (Main.height() / 2) + enth / 2) / GameState.renderScale;
-
 	}
 
 	public void move(int x, int y) {
