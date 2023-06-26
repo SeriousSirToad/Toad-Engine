@@ -87,13 +87,9 @@ public class GameWindow {
 				b.render(g);
 			}
 		} else {
-			x = (GameState.gameWidth() / 2) - 2;
-			y = (GameState.gameHeight() / 2) - (GameState.player.h / 2) - 2;
+			x = bounds.x - GameState.camera.x;
+			y = bounds.y - GameState.camera.y;
 
-			if (GameState.player.getLevel().scaledWidth() <= Main.WIDTH) {
-				x = bounds.x + (bounds.width / 2);
-				y = bounds.y + (bounds.height / 2) - 15;
-			}
 			g.setColor(tipColor);
 			g.fillOval(x, y, w, h);
 		}
