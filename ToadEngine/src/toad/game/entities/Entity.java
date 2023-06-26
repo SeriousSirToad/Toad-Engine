@@ -144,20 +144,11 @@ public abstract class Entity {
 
 		Rectangle temp = new Rectangle(collider.x + xa + 1, collider.y + ya + 1, collider.width, collider.height);
 
-		if (temp.intersects(other)) {
-			return true;
-		}
-
-		return false;
+		return temp.intersects(other);
 	}
 
 	public boolean hasCollided(Rectangle other) {
-
-		if (collider.intersects(other)) {
-			return true;
-		}
-
-		return false;
+		return collider.intersects(other);
 	}
 	
 	public void teleport(int x, int y) {

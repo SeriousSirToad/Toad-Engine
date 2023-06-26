@@ -46,13 +46,13 @@ public class Building extends Entity {
 	// So it took me a while to figure out but this method is designed with the x +
 	// y coords
 	// to make it customizeable as to where the door is relative to the building 
-	protected void makeStandardDoor(int x, int y) {
+	protected void makeStandardDoor(int x, int y, Point innerTpLoc, Point outerTpLoc) {
 		//makes the collider for the door that leads to the interior
 		Rectangle doorRect = new Rectangle(this.x + x, this.y + this.h - y, 32, 1);
 		//creates the corresponding interior door
 		Rectangle door2 = new Rectangle(interior.width / 2 - 16, interior.height - 1, 32, 8);
-		door = new Door(level, doorRect, interior, new Point(24, 24));
-		doorInterior = new Door(interior, door2, level, new Point(24, 24));
+		door = new Door(level, doorRect, interior, innerTpLoc);
+		doorInterior = new Door(interior, door2, level, outerTpLoc);
 	}
 
 }

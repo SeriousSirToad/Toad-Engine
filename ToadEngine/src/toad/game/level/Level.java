@@ -80,9 +80,9 @@ public abstract class Level {
 		for (Entity e : entities) {
 			e.render();
 		}
-		for (Door d : doors) {
-			d.render();
-		}
+//		for (Door d : doors) {
+//			d.render();
+//		}
 		shader.update();
 	}
 

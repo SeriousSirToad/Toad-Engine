@@ -39,8 +39,7 @@ public class Door {
 	}
 	
 	public void render() {
-		Main.g.drawRect(rect.x - GameState.camera.x, rect.y - GameState.camera.y, rect.width, rect.height);
-		Main.g.drawRect(tpLocation.x - GameState.camera.x, tpLocation.y - GameState.camera.y, 1, 1);
+//		Main.g.drawRect(rect.x - GameState.camera.x, rect.y - GameState.camera.y, rect.width, rect.height);
+//		Main.g.drawRect(tpLocation.x - GameState.camera.x, tpLocation.y - GameState.camera.y, 1, 1);
 	}
-
 }
