@@ -1,8 +1,6 @@
 package toad.ui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 
 import toad.game.GameState;
@@ -16,6 +14,8 @@ public class GameWindow {
 
 	public int w, h;
 	public int x, y;
+
+	private Rectangle bounds;
 
 	String title = "Sample text", body = "Sample text";
 	String buttonName;
@@ -87,6 +87,13 @@ public class GameWindow {
 				b.render(g);
 			}
 		} else {
+			x = (GameState.gameWidth() / 2) - 2;
+			y = (GameState.gameHeight() / 2) - (GameState.player.h / 2) - 2;
+
+			if (GameState.player.getLevel().scaledWidth() <= Main.WIDTH) {
+				x = bounds.x + (bounds.width / 2);
+				y = bounds.y + (bounds.height / 2) - 15;
+			}
 			g.setColor(tipColor);
 			g.fillOval(x, y, w, h);
 		}
@@ -119,4 +126,7 @@ public class GameWindow {
 		this.body = body;
 	}
 
+	public void setBounds(Rectangle bounds) {
+		this.bounds = bounds;
+	}
 }

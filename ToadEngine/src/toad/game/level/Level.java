@@ -29,10 +29,7 @@ public abstract class Level {
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	public ArrayList<Rectangle> colliders = new ArrayList<Rectangle>();
 	public ArrayList<Door> doors = new ArrayList<Door>();
-	public Rectangle topwall;
-	Rectangle leftwall;
-	Rectangle rightwall;
-	Rectangle bottomwall;
+	public Rectangle topwall, leftwall, rightwall, bottomwall;
 
 	public static Level bean = new lvl_bean();
 	public static Level test = new lvl_test();
@@ -104,11 +101,11 @@ public abstract class Level {
 	public abstract void init();
 
 	public int scaledWidth() {
-		return (int) (width * GameState.renderScale);
+		return width * GameState.renderScale;
 	}
 
 	public int scaledHeight() {
-		return (int) (height * GameState.renderScale);
+		return height * GameState.renderScale;
 	}
 
 }

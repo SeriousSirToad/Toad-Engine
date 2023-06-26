@@ -2,8 +2,10 @@ package toad.game.entities.objects;
 
 import java.awt.Rectangle;
 
+import toad.game.GameState;
 import toad.game.level.Level;
 import toad.gfx.Assets;
+import toad.ui.GameWindow;
 
 public class Bed extends GameObject{
 

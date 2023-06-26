@@ -3,6 +3,7 @@ package toad.game.entities;
 import java.awt.Rectangle;
 
 import toad.game.GameState;
+import toad.game.Main;
 import toad.game.level.Level;
 import toad.io.InputHandler;
 import toad.ui.GameWindow;
@@ -23,6 +24,7 @@ public class ActionZone extends Entity {
 		this.key = key;
 
 		dialogTip = new GameWindow("", "'E'", 5, 5, null);
+		dialogTip.setBounds(bounds);
 	}
 
 	public ActionZone(Level level, Rectangle bounds, GameWindow gw) {
