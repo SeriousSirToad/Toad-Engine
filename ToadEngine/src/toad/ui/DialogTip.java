@@ -11,16 +11,18 @@ public class DialogTip{
 
     private String text;
     private final Color tipColor;
-    private int x, y, w, h;
-    private Rectangle bounds;
+    private int initX, initY, currentX, currentY, w, h;
 
     public boolean active;
 
-    public DialogTip(String text, Rectangle bounds, int w, int h) {
+    public DialogTip(String text, int x, int y, int w, int h) {
         tipColor = new Color(42, 42, 42, 200);
         this.w = w;
         this.h = h;
-        this.bounds = bounds;
+        initX = x;
+        initY = y;
+        currentX = initX;
+        currentY = initY;
         this.text = text;
     }
 
@@ -28,19 +30,19 @@ public class DialogTip{
         // For 'E' dialogs
         Main.g.setColor(Color.white);
         Main.g.setFont(bodyFont);
-        Main.g.drawString(text, x, y + 4);
+        Main.g.drawString(text, currentX + 2, currentY + 4);
         Main.g.setFont(InGameUI.standardFont);
     }
 
     public void update() {
-        x = bounds.x - GameState.camera.x;
-        y = bounds.y - GameState.camera.y;
+        currentX = initX - GameState.camera.x;
+        currentY = initY - GameState.camera.y;
         if (active) show();
     }
 
     private void show() {
         Main.g.setColor(tipColor);
-        Main.g.fillOval(x, y, w, h);
+        Main.g.fillOval(currentX, currentY, w, h);
         showText();
     }
 

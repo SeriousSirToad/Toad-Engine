@@ -20,7 +20,7 @@ public class int_apartment extends Level {
 		ActionZone a = new ActionZone(
 				this, new Rectangle(112, 47, 64, 54), new GameWindow("Bed", "", 100, 80, "Sleep"), Main.input.E
 		);
-		a.setDialogTip(new DialogTip("'E'", new Rectangle(160, 47, 64, 54), 5, 5));
+		a.setDialogTip(new DialogTip("E", 160, 47, 6, 6));
 		new Bed(this, 128, 52);
 	}
 
