@@ -72,16 +72,14 @@ public class GameWindow {
 	public void show() {
 		Graphics g = Main.g;
 
-		if (buttonName != null) {
-			g.setColor(colour);
-			g.fillRect(x, y, w, h);
+		g.setColor(colour);
+		g.fillRect(x, y, w, h);
 
-			g.setColor(Color.white);
-			g.drawRect(x, y, w, h);
+		g.setColor(Color.white);
+		g.drawRect(x, y, w, h);
 
-			for (GameButton b : buttons) {
-				b.render(g);
-			}
+		for (GameButton b : buttons) {
+			b.render(g);
 		}
 		showText(g);
 	}
