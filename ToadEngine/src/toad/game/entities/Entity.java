@@ -48,7 +48,6 @@ public abstract class Entity {
 		}
 		collider = new Rectangle(x, y + 3 * (h / 4), w, h / 4);
 		colliderLoc = colliderLocation();
-
 	}
 
 	public void tick() {
