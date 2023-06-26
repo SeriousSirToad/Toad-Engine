@@ -196,7 +196,6 @@ public class Main extends Canvas implements Runnable {
 
 		bs.show();
 		g.dispose();
-
 	}
 
 	public void start() {

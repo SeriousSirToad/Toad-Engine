@@ -10,12 +10,10 @@ public class GameWindow {
 
 	ArrayList<GameButton> buttons = new ArrayList<>();
 
-	static Font bodyFont = new Font("Comic sans ms", Font.PLAIN, 4);
+	public static Font bodyFont = new Font("Comic sans ms", Font.PLAIN, 4);
 
 	public int w, h;
 	public int x, y;
-
-	private Rectangle bounds;
 
 	String title = "Sample text", body = "Sample text";
 	String buttonName;
@@ -23,7 +21,6 @@ public class GameWindow {
 	public boolean active;
 
 	Color colour = new Color(0, 0, 0, 200);
-	Color tipColor = new Color(42, 42, 42, 200);
 
 	public GameWindow(String title, String body, int w, int h, String buttonName) {
 		this.buttonName = buttonName;
@@ -45,7 +42,6 @@ public class GameWindow {
 		this.x = (GameState.gameWidth() / 2) - w / 2;
 		this.y = (GameState.gameHeight() / 2) - h / 2;
 
-		if (buttonName == null) return;
 		buttons.add(new GameButton(x + (w / 2) - (GameButton.stdWidth / 2), y + h - GameButton.stdHeight, buttonName,
 				bodyFont) {
 			public void onClick() {
@@ -86,15 +82,8 @@ public class GameWindow {
 			for (GameButton b : buttons) {
 				b.render(g);
 			}
-		} else {
-			x = bounds.x - GameState.camera.x;
-			y = bounds.y - GameState.camera.y;
-
-			g.setColor(tipColor);
-			g.fillOval(x, y, w, h);
 		}
 		showText(g);
-		g.setFont(InGameUI.standardFont);
 	}
 
 	public void showText(Graphics g) {
@@ -103,15 +92,11 @@ public class GameWindow {
 		g.drawString(title, x + 1, y + InGameUI.standardFont.getSize() + 1);
 		g.setFont(bodyFont);
 
-		// For 'E' dialogs
-		if (title.equals("")) {
-			g.drawString(body, x, y + 4);
-			return;
-		}
-
 		int tempy = y + InGameUI.standardFont.getSize() + 1;
 		for (String line : body.split("\n"))
 			g.drawString(line, x + 1, tempy += g.getFontMetrics().getHeight());
+
+		g.setFont(InGameUI.standardFont);
 	}
 
 	public void setTitle(String title) {
@@ -120,9 +105,5 @@ public class GameWindow {
 
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	public void setBounds(Rectangle bounds) {
-		this.bounds = bounds;
 	}
 }

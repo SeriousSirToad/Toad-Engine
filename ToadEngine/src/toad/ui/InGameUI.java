@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import toad.game.Main;
@@ -11,6 +12,7 @@ import toad.game.Main;
 public class InGameUI {
 
 	private static ArrayList<GameWindow> windows = new ArrayList<>();
+	private static ArrayList<DialogTip> tips = new ArrayList<>();
 	private static ArrayList<String> strings = new ArrayList<>();
 	static int totalStringWidth = 0;
 
@@ -24,6 +26,10 @@ public class InGameUI {
 			for (int i = 0; i < windows.size(); i++) {
 				GameWindow w = windows.get(i);
 				w.update();
+			}
+			for (int i = 0; i < tips.size(); i++) {
+				DialogTip tip = tips.get(i);
+				tip.update();
 			}
 		}
 		if (type == 1) {
@@ -41,18 +47,22 @@ public class InGameUI {
 		windows.add(window);
 	}
 
+	public static void addToRendOrder(DialogTip dialogTip) {
+		tips.add(dialogTip);
+	}
+
 	public static int addToRendOrder(String s) {
 		strings.add(s);
 		return strings.indexOf(s);
-		
 	}
 
 	public static void clearRenderOrder() {
 		windows.clear();
+		tips.clear();
 	}
 
 	public static void replaceRenderOrder(String s, String s2) {
-		if (strings.indexOf(s) == -1) {
+		if (!strings.contains(s)) {
 			strings.add(s);
 			strings.set(strings.indexOf(s), s2);
 		} else {
@@ -62,6 +72,10 @@ public class InGameUI {
 
 	public static void removeFromRendOrder(GameWindow window) {
 		windows.remove(window);
+	}
+
+	public static void removeFromRendOrder(DialogTip dialogTip) {
+		tips.remove(dialogTip);
 	}
 
 	public static void removeFromRendOrder(String s) {
