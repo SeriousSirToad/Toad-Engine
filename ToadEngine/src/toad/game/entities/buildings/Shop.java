@@ -16,7 +16,7 @@ public class Shop extends Building {
 		super(level, x, y, Assets.shop, new int_generic());
 
 		int xOffset = 8;
-		int yOffset = 18;
+		int yOffset = 16;
 		Point exteriorTpLocation = new Point(x + (w / 2) - xOffset, y + h - yOffset);
 		Point interiorTpLocation = new Point(80, 95);
 

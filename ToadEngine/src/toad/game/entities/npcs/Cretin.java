@@ -20,7 +20,6 @@ public class Cretin extends Mob {
 
 	@Override
 	public void update() {
-
 		Random r = new Random();
 		cretinclock++;
 		penis: if (cretinclock == clockspeed) {
@@ -48,13 +47,10 @@ public class Cretin extends Mob {
 			}
 			clockspeed = r.nextInt(60) + 1;
 		}
-
 		move(xa, ya);
-
 	}
-	
+
 	public void shit() {
 		
 	}
-
 }

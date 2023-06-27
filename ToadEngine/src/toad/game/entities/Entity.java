@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import toad.game.GameState;
 import toad.game.Main;
+import toad.game.entities.npcs.Cretin;
 import toad.game.level.Level;
 import toad.gfx.Animation;
 
@@ -159,5 +160,4 @@ public abstract class Entity {
 		collider.x = y + colliderLoc.x;
 		collider.y = y + colliderLoc.y;
 	}
-
 }

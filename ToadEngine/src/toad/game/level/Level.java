@@ -41,6 +41,8 @@ public abstract class Level {
 		public int compare(Entity a, Entity b) {
 			if (a.y + a.h < b.y + b.h)
 				return -1;
+			else if (a.y + a.h == b.y + b.h)
+				return 0;
 			return 1;
 		}
 	};
