@@ -47,9 +47,8 @@ public class ActionZone extends Entity {
 					gw.activate();
 		}
 
-		if (!bounds.intersects(GameState.player.collider) && (gw.active) ){
+		if (!bounds.intersects(GameState.player.collider))
 			gw.deactivate();
-		}
 
 		if (interactionTip != null)
 			updateTip();

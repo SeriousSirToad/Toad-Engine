@@ -26,5 +26,4 @@ public class lvl_bean extends Level {
 		new Cretin(this, 100, 86);
 		shader.new Light(295, 152, 100, 2, Color.yellow);
 	}
-
 }

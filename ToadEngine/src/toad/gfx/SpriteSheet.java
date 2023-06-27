@@ -13,13 +13,11 @@ public class SpriteSheet {
 	public BufferedImage sheet;
 
 	public SpriteSheet(String imagePath) {
-
 		try {
 			sheet = ImageIO.read(getClass().getResource(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public BufferedImage getImage(int x, int y, int w, int h) {
