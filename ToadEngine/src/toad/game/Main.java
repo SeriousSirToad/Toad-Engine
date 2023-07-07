@@ -192,6 +192,7 @@ public class Main extends Canvas implements Runnable {
 		if (GameState.running) {
 			InGameUI.render(0, g);
 			InGameUI.render(1, g);
+			InGameUI.render(2, g);
 		}
 
 		bs.show();

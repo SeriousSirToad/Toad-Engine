@@ -47,8 +47,9 @@ public class ActionZone extends Entity {
 					gw.activate();
 		}
 
-		if (!bounds.intersects(GameState.player.collider))
+		if (!bounds.intersects(GameState.player.collider) && (gw.active)) {
 			gw.deactivate();
+		}
 
 		if (interactionTip != null)
 			updateTip();
@@ -56,16 +57,20 @@ public class ActionZone extends Entity {
 
 	private void updateTip() {
 		if (bounds.intersects(GameState.player.collider)) {
-			if (!gw.active)
-				interactionTip.activate();
-			else
+			if (!gw.active) {
+				if (!interactionTip.active)
+					interactionTip.activate();
+
+			} else
 				interactionTip.deactivate();
 		}
 
-		if (!bounds.intersects(GameState.player.collider) && (gw.active || interactionTip.active) ){
+		if (!bounds.intersects(GameState.player.collider) && (gw.active || interactionTip.active)) {
 			interactionTip.deactivate();
 		}
 	}
 
-	public void setInteractionTip(InteractionTip tip) { interactionTip = tip; }
+	public void setInteractionTip(InteractionTip tip) {
+		interactionTip = tip;
+	}
 }

@@ -26,10 +26,6 @@ public class InGameUI {
 				GameWindow w = windows.get(i);
 				w.update();
 			}
-			for (int i = 0; i < tips.size(); i++) {
-				InteractionTip tip = tips.get(i);
-				tip.update();
-			}
 		}
 		if (type == 1) {
 			g.setColor(Color.green);
@@ -38,6 +34,11 @@ public class InGameUI {
 				totalStringWidth += 3 + (strings.get(i).length() * fm.charWidth(0));
 				g.drawString(strings.get(i), totalStringWidth - strings.get(i).length() * fm.charWidth(0) - 3,
 						standardFont.getSize());
+			}
+		}
+		if (type == 2) {
+			for (int i = 0; i < tips.size(); i++) {
+				tips.get(i).update();
 			}
 		}
 	}
