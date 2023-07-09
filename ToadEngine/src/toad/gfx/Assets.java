@@ -24,12 +24,10 @@ public class Assets {
 
 	// Flora
 	public static BufferedImage getTree(int type) {
-		switch (type) {
-		case 1:
+		if (type == 1) {
 			return entities.getImage(35, 96, 25, 53);
-		default:
-			return entities.getImage(3, 107, 25, 53);
 		}
+		return entities.getImage(3, 107, 25, 53);
 	}
 
 	//Decor

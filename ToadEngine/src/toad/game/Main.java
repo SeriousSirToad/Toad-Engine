@@ -112,9 +112,9 @@ public class Main extends Canvas implements Runnable {
 			if (System.currentTimeMillis() - lastTimer >= 1000) {
 				lastTimer += 1000;
 				if (firstFPS) {
-					InGameUI.replaceRenderOrder("FPS: " + this.frames, "FPS: " + frames);
+					InGameUI.replaceRenderOrder("FPS: " + Main.frames, "FPS: " + frames);
 				}
-				this.frames = frames;
+				Main.frames = frames;
 				ticks = 0;
 				frames = 0;
 			}

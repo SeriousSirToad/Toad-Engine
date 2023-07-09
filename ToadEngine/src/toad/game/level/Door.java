@@ -2,9 +2,6 @@ package toad.game.level;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-
-import toad.game.GameState;
-import toad.game.Main;
 import toad.game.entities.Entity;
 
 public class Door {
@@ -30,10 +27,6 @@ public class Door {
 			if (rect.intersects(e.collider)) {
 				e.setLevel(level);
 				e.teleport(tpLocation.x, tpLocation.y);
-				//e.x = (int) tpLocation.getX();
-				//e.y = (int) tpLocation.getY();
-				//e.collider.x = (int) tpLocation.getX() + e.colliderLoc.x;
-				//e.collider.y = (int) tpLocation.getY() + e.colliderLoc.y;
 			}
 		}
 	}

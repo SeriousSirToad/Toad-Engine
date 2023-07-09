@@ -107,10 +107,8 @@ public class Camera {
 		int ey = r.y * GameState.renderScale;
 		int ew = r.width * GameState.renderScale;
 		int eh = r.height * GameState.renderScale;
-		if (ex + ew < x || ey + eh < y) {
-			return false;
-		}
-		return true;
+
+		return ex + ew >= x && ey + eh >= y;
 	}
 
 	public boolean contains(Entity e) {
@@ -118,10 +116,8 @@ public class Camera {
 		int ey = e.y * GameState.renderScale;
 		int ew = e.w * GameState.renderScale;
 		int eh = e.h * GameState.renderScale;
-		if (ex + ew < x || ey + eh < y) {
-			return false;
-		}
-		return true;
+
+		return ex + ew >= x && ey + eh >= y;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
@@ -14,7 +15,7 @@ public class SpriteSheet {
 
 	public SpriteSheet(String imagePath) {
 		try {
-			sheet = ImageIO.read(getClass().getResource(imagePath));
+			sheet = ImageIO.read( Objects.requireNonNull(getClass().getResource(imagePath)) );
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

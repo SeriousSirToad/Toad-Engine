@@ -154,11 +154,11 @@ public class GameButton {
 			g.drawRect(x, y, width, height);
 		}
 
+		// 7-8-23 Revised string x-coordinate calculation
 		if (text != null) {
 			g.setColor(Color.white);
-			g.drawString(text, x + (width / 7), y + (height / 2 + font.getSize() / 2));
+			g.drawString(text, x + (width / 4 - font.getSize() / 2), y + (height / 2 + font.getSize() / 2));
 		}
-
 	}
 
 	public void setColor(Color color) {

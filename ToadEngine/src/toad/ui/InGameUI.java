@@ -51,9 +51,9 @@ public class InGameUI {
 		tips.add(interactionTip);
 	}
 
-	public static int addToRendOrder(String s) {
+	// 7-8-23 Made return type void
+	public static void addToRendOrder(String s) {
 		strings.add(s);
-		return strings.indexOf(s);
 	}
 
 	public static void clearRenderOrder() {

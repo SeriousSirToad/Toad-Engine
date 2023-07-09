@@ -11,8 +11,10 @@ import toad.ui.GameWindow;
 
 public class int_apartment extends Level {
 
+	// 7-8-23 Set interior to true
 	public int_apartment() {
 		super("/images/interior/int_apartment.png");
+		interior = true;
 	}
 
 	@Override

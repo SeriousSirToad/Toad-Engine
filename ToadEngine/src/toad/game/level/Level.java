@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
@@ -31,20 +32,28 @@ public abstract class Level {
 	public ArrayList<Door> doors = new ArrayList<Door>();
 	public Rectangle topwall, leftwall, rightwall, bottomwall;
 
-	public static Level bean = new lvl_bean();
-	public static Level test = new lvl_test();
+	public static Level test = new lvl_test(); // Moved lvl_bean() initialization to GameState
 	public int width = 0;
 	public int height = 0;
 
-	private Comparator<Entity> entitySorter = new Comparator<Entity>() {
-		@Override
-		public int compare(Entity a, Entity b) {
-			if (a.y + a.h < b.y + b.h)
-				return -1;
-			else if (a.y + a.h == b.y + b.h)
-				return 0;
-			return 1;
+	public Level(String imagePath) {
+		URL path = getClass().getResource(imagePath);
+		System.out.println(path);
+		try {
+			image = ImageIO.read( Objects.requireNonNull(getClass().getResource(imagePath)) );
+			width = image.getWidth();
+			height = image.getHeight();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
+
+	private Comparator<Entity> entitySorter = (a, b) -> {
+		if (a.y + a.h < b.y + b.h)
+			return -1;
+		else if (a.y + a.h == b.y + b.h)
+			return 0;
+		return 1;
 	};
 
 	public void tick() {
@@ -85,18 +94,6 @@ public abstract class Level {
 //			d.render();
 //		}
 		shader.update();
-	}
-
-	public Level(String imagePath) {
-		URL path = getClass().getResource(imagePath);
-		System.out.println(path);
-		try {
-			image = ImageIO.read(getClass().getResource(imagePath));
-			width = image.getWidth();
-			height = image.getHeight();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public abstract void init();
