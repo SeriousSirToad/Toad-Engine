@@ -41,7 +41,7 @@ public abstract class Level {
 		URL path = getClass().getResource(imagePath);
 		System.out.println(path);
 		try {
-			image = ImageIO.read( Objects.requireNonNull(getClass().getResource(imagePath)) );
+			image = ImageIO.read( Objects.requireNonNull(getClass().getResource(imagePath)));
 			width = image.getWidth();
 			height = image.getHeight();
 		} catch (IOException e) {

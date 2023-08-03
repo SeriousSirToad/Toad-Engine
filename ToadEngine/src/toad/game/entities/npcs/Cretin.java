@@ -20,12 +20,11 @@ public class Cretin extends Mob {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
 
 		try {
-			File file = new File("ToadEngine/res/audio/silly_wabble.wav");
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+			AudioInputStream audioin = AudioSystem.getAudioInputStream(getClass().getResource("/audio/silly_wabble.wav"));
 			audio = AudioSystem.getClip();
-			audio.open(audioInputStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			throw new RuntimeException(e);
+			audio.open(audioin);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
