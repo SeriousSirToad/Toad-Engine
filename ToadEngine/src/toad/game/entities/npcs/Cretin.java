@@ -1,6 +1,5 @@
 package toad.game.entities.npcs;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -18,14 +17,7 @@ public class Cretin extends Mob {
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
-
-		try {
-			AudioInputStream audioin = AudioSystem.getAudioInputStream(getClass().getResource("/audio/silly_wabble.wav"));
-			audio = AudioSystem.getClip();
-			audio.open(audioin);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		audio = Assets.cretinNoise.getClip();
 	}
 
 	int cretinclock = 0;

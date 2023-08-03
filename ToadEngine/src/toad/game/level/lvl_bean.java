@@ -2,7 +2,6 @@ package toad.game.level;
 
 import java.awt.Color;
 
-import toad.game.entities.Player;
 import toad.game.entities.buildings.Apartment_generic;
 import toad.game.entities.buildings.Shop;
 import toad.game.entities.flora.Tree;

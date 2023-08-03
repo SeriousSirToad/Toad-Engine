@@ -3,6 +3,8 @@ package toad.gfx;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.net.URL;
+import java.util.Objects;
 
 public class Assets {
 
@@ -21,6 +23,8 @@ public class Assets {
 	public static final Animation cr_hz = new Animation(10, entities.getAnimation(16, 48, 16, 16, 4), false);
 	public static final Animation cr_u = new Animation(10, entities.getAnimation(128, 48, 16, 16, 3), true);
 	public static final Animation cr_dn = new Animation(10, entities.getAnimation(80, 48, 16, 16, 3), true);
+
+	public static final Audio cretinNoise = new Audio("/audio/silly_wabble.wav");
 
 	// Flora
 	public static BufferedImage getTree(int type) {
