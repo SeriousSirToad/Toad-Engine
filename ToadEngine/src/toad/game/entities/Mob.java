@@ -3,6 +3,8 @@ package toad.game.entities;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.sound.sampled.Clip;
+
 import toad.game.GameState;
 import toad.game.Item;
 import toad.game.Main;
@@ -18,13 +20,14 @@ public abstract class Mob extends Entity {
 	protected String name;
 	protected ArrayList<Item> inventory = new ArrayList<>();
 	protected boolean isNPC = false;
+	protected Clip audio;
 
 	public Mob(Level level, int x, int y, BufferedImage image, Animation hz, Animation up, Animation dn) {
 		super(level, x, y, image);
 		this.hz = hz;
 		this.up = up;
 		this.dn = dn;
-		animations = new Animation[]{hz, up, dn};
+		animations = new Animation[] { hz, up, dn };
 		isMob = true;
 	}
 
@@ -42,6 +45,15 @@ public abstract class Mob extends Entity {
 
 	@Override
 	public abstract void update();
+
+	protected void updateAudio() {
+
+	}
+
+	protected void playClip() {
+		if (audio != null)
+			audio.start();
+	}
 
 	public void render() {
 		if (GameState.camera.contains(this)) {

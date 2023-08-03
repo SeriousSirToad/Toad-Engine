@@ -1,6 +1,5 @@
 package toad.game.entities.npcs;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -20,16 +19,9 @@ public class Cretin extends Mob {
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
-
-		try {
-			AudioInputStream audioin = AudioSystem.getAudioInputStream(getClass().getResource("/audio/silly_wabble.wav"));
-			audio = AudioSystem.getClip();
-			audio.open(audioin);
-			gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
-			panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		audio = Assets.cretinNoise.getClip();
+		gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
+		panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
 	}
 
 	int cretinclock = 0;
@@ -67,7 +59,7 @@ public class Cretin extends Mob {
 			clockspeed = r.nextInt(60) + 1;
 		}
 		move(xa, ya);
-		if (this.level == GameState.player.getLevel()) {
+		if (this.level == GameState.player.getLevel() && audio != null) {
 			if (!audio.isActive()) {
 				audio.loop(Clip.LOOP_CONTINUOUSLY);
 			}
@@ -79,7 +71,7 @@ public class Cretin extends Mob {
 		}
 	}
 	
-	private void updateAudio() {
+	protected void updateAudio() {
 		
 		double distance = Math.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
 		float volume = (float) (1.0 - (distance / 100));
@@ -102,8 +94,6 @@ public class Cretin extends Mob {
 	
 	public void render() {
 		super.render();
-
-		updateAudio();
 	}
 
 	@Override
