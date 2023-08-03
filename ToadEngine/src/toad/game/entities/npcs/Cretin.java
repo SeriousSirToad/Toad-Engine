@@ -14,10 +14,14 @@ import javax.sound.sampled.*;
 public class Cretin extends Mob {
 
 	Clip audio;
+	FloatControl gainControl;
+	FloatControl panControl;
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
 		audio = Assets.cretinNoise.getClip();
+		gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
+		panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
 	}
 
 	int cretinclock = 0;
@@ -55,10 +59,20 @@ public class Cretin extends Mob {
 			clockspeed = r.nextInt(60) + 1;
 		}
 		move(xa, ya);
-		updateAudio();
+		if (this.level == GameState.player.getLevel() && audio != null) {
+			if (!audio.isActive()) {
+				audio.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+			updateAudio();
+		} else {
+			if (audio.isActive()) {
+				audio.stop();
+			}
+		}
 	}
-
-	private void updateAudio() {
+	
+	protected void updateAudio() {
+		
 		double distance = Math.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
 		float volume = (float) (1.0 - (distance / 100));
 
@@ -72,18 +86,19 @@ public class Cretin extends Mob {
 			pan = -1;
 		else if (pan > 1)
 			pan = 1;
-
-		FloatControl gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
+		
 		gainControl.setValue(20f * (float) Math.log10(volume));
-
-		FloatControl panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
 		panControl.setValue(pan);
+		System.out.println(pan + ", " + volume);
+	}
+	
+	public void render() {
+		super.render();
 	}
 
 	@Override
 	public void init() {
 		super.init();
-		audio.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 
 	public void shit() {

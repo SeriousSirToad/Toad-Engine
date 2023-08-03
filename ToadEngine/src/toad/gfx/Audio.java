@@ -12,9 +12,9 @@ public class Audio{
         URL sillyWabbleWav = Objects.requireNonNull(Assets.class.getResource(audioPath));
 
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(sillyWabbleWav);
+        	AudioInputStream audioin = AudioSystem.getAudioInputStream(getClass().getResource(audioPath));
             clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
+            clip.open(audioin);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             throw new RuntimeException(e);
         }

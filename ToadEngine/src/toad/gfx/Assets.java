@@ -25,6 +25,7 @@ public class Assets {
 	public static final Animation cr_dn = new Animation(10, entities.getAnimation(80, 48, 16, 16, 3), true);
 
 	public static final Audio cretinNoise = new Audio("/audio/silly_wabble.wav");
+	public static final Audio huh = new Audio("/audio/huh.wav");
 
 	// Flora
 	public static BufferedImage getTree(int type) {
