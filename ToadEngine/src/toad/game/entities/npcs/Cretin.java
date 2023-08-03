@@ -16,6 +16,7 @@ public class Cretin extends Mob {
 	Clip audio;
 	FloatControl gainControl;
 	FloatControl panControl;
+	boolean seriousmode;
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
@@ -40,8 +41,8 @@ public class Cretin extends Mob {
 			int dir1 = r.nextInt(2);
 			int dir2 = r.nextInt(2);
 			isMoving = r.nextBoolean();
-			for(Door d : level.doors) {
-				if(x - 5 <= d.rect.x && x + 5 >= d.rect.x && collider.y >= d.rect.y) {
+			for (Door d : level.doors) {
+				if (x - 5 <= d.rect.x && x + 5 >= d.rect.x && collider.y >= d.rect.y) {
 					ya--;
 					break penis;
 				}
@@ -70,10 +71,11 @@ public class Cretin extends Mob {
 			}
 		}
 	}
-	
+
 	protected void updateAudio() {
-		
-		double distance = Math.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
+
+		double distance = Math
+				.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
 		float volume = (float) (1.0 - (distance / 100));
 
 		if (volume < 0)
@@ -86,10 +88,9 @@ public class Cretin extends Mob {
 			pan = -1;
 		else if (pan > 1)
 			pan = 1;
-		
+
 		gainControl.setValue(20f * (float) Math.log10(volume));
 		panControl.setValue(pan);
-		System.out.println(pan + ", " + volume);
 	}
 
 	@Override
@@ -98,6 +99,6 @@ public class Cretin extends Mob {
 	}
 
 	public void shit() {
-		
+
 	}
 }

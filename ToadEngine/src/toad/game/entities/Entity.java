@@ -3,6 +3,9 @@ package toad.game.entities;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import javax.sound.sampled.Clip;
 
 import toad.game.GameState;
 import toad.game.Main;
@@ -29,6 +32,7 @@ public abstract class Entity {
 	public Point colliderLoc;
 
 	Animation[] animations;
+	ArrayList<Clip> audio = new ArrayList<>();
 
 	protected int movingDir = 0;
 

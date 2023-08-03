@@ -46,7 +46,6 @@ public class NPC_generic extends NPC {
 			audio.setFramePosition(0);
 			audiobool = false;
 		}
-		System.out.println(audio.isActive());
 	}
 
 	public String genericNamer() {

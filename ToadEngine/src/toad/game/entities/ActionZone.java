@@ -68,7 +68,6 @@ public class ActionZone extends Entity {
 		if (!bounds.intersects(GameState.player.collider) && (gw.active || interactionTip.active)) {
 			interactionTip.deactivate();
 		}
-		System.out.println(" - " + interactionTip.active);
 	}
 
 	public void setInteractionTip(InteractionTip tip) {
