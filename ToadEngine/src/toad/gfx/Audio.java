@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class Audio{
+public class Audio {
 
     private Clip clip;
     public Audio(String audioPath) {
         URL sillyWabbleWav = Objects.requireNonNull(Assets.class.getResource(audioPath));
 
         try {
-        	AudioInputStream audioin = AudioSystem.getAudioInputStream(getClass().getResource(audioPath));
+        	AudioInputStream audioin = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource(audioPath)));
             clip = AudioSystem.getClip();
             clip.open(audioin);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {

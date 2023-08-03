@@ -65,7 +65,7 @@ public class Cretin extends Mob {
 			}
 			updateAudio();
 		} else {
-			if (audio.isActive()) {
+			if (audio != null && audio.isActive()) {
 				audio.stop();
 			}
 		}
@@ -90,10 +90,6 @@ public class Cretin extends Mob {
 		gainControl.setValue(20f * (float) Math.log10(volume));
 		panControl.setValue(pan);
 		System.out.println(pan + ", " + volume);
-	}
-	
-	public void render() {
-		super.render();
 	}
 
 	@Override

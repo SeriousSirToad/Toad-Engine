@@ -26,6 +26,9 @@ public class Assets {
 
 	public static final Audio cretinNoise = new Audio("/audio/silly_wabble.wav");
 	public static final Audio huh = new Audio("/audio/huh.wav");
+	public static final Audio heywazzup = new Audio("/audio/heywazzu.wav");
+	public static final Audio whaddayawant1 = new Audio("/audio/whaddayuwant.wav");
+	public static final Audio whaddayawant2 = new Audio("/audio/whaddayuwant2.wav");
 
 	// Flora
 	public static BufferedImage getTree(int type) {
