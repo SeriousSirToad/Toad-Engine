@@ -19,7 +19,7 @@ public class GameState {
 	public static GameWindow welcome = new GameWindow("Welcome to game", welcomeMessage, 80, 60, "Close");
 
 	public static void init() {
-		currentLevel = new lvl_bean(); // Init level bean here instead of in level
+		currentLevel = Level.bean; // Init level bean here instead of in level
 		currentLevel.tick();
 		player = new Player(currentLevel, 5, 10);
 		camera = new Camera(0, 0, player);
@@ -32,5 +32,4 @@ public class GameState {
 	public static int gameHeight() {
 		return Main.HEIGHT / renderScale;
 	}
-
 }

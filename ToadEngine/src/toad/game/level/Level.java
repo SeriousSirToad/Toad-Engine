@@ -33,6 +33,7 @@ public abstract class Level {
 	public Rectangle topwall, leftwall, rightwall, bottomwall;
 
 	public static Level test = new lvl_test(); // Moved lvl_bean() initialization to GameState
+	public static Level bean = new lvl_bean();
 	public int width = 0;
 	public int height = 0;
 

@@ -1,16 +1,32 @@
 package toad.game.entities.npcs;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
+import toad.game.GameState;
 import toad.game.entities.Mob;
 import toad.game.level.Door;
 import toad.game.level.Level;
 import toad.gfx.Assets;
 
+import javax.sound.sampled.*;
+
 public class Cretin extends Mob {
+
+	Clip audio;
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
+
+		try {
+			File file = new File("ToadEngine/res/audio/silly_wabble.wav");
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+			audio = AudioSystem.getClip();
+			audio.open(audioInputStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	int cretinclock = 0;
@@ -48,6 +64,35 @@ public class Cretin extends Mob {
 			clockspeed = r.nextInt(60) + 1;
 		}
 		move(xa, ya);
+		updateAudio();
+	}
+
+	private void updateAudio() {
+		double distance = Math.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
+		float volume = (float) (1.0 - (distance / 100));
+
+		if (volume < 0)
+			volume = 0;
+		else if (volume > 1)
+			volume = 1.0f;
+
+		float pan = (this.x - GameState.player.x) / 100f;
+		if (pan < -1)
+			pan = -1;
+		else if (pan > 1)
+			pan = 1;
+
+		FloatControl gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(20f * (float) Math.log10(volume));
+
+		FloatControl panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
+		panControl.setValue(pan);
+	}
+
+	@Override
+	public void init() {
+		super.init();
+		audio.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 
 	public void shit() {
