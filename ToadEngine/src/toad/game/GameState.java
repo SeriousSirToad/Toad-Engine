@@ -13,6 +13,7 @@ public class GameState {
 	public static Level currentLevel;
 	public static int renderScale = 4;
 	public static int levelSeason = 0;
+	public static int time = 0;
 	public static boolean running = false;
 	
 	private static final String welcomeMessage = "hi";

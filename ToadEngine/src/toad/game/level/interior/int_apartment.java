@@ -24,5 +24,6 @@ public class int_apartment extends Level {
 		);
 		a.setInteractionTip(new InteractionTip("E", 160, 47, 6, 6));
 		new Bed(this, 128, 52);
+		shader.addLight(5, 3, 17);
 	}
 }

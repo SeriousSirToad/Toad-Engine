@@ -23,6 +23,6 @@ public class lvl_bean extends Level {
 		new Tree(this, 338, 180, 0);
 		new Tree(this, 338, 256, 0);
 		new Cretin(this, 100, 86);
-		shader.new Light(295, 152, 100, 2, Color.yellow);
+		shader.addLight(5, 5, 10);
 	}
 }

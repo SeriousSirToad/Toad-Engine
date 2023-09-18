@@ -25,7 +25,6 @@ public abstract class Level {
 
 	public Player player;
 	public BufferedImage image;
-	public int time = 0;
 	public int season = 1; // 0 is winter, 1 is spring, 2 = summer, 3 = fall
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	public ArrayList<Rectangle> colliders = new ArrayList<Rectangle>();
@@ -72,7 +71,13 @@ public abstract class Level {
 			initialized = true;
 			return;
 		}
-
+		
+		GameState.time++;
+		//System.out.println(GameState.time);
+		if (GameState.time >= 1440) {
+			GameState.time = 0;
+		}
+		
 		for (Door d : doors) {
 			d.tick();
 		}
@@ -82,8 +87,9 @@ public abstract class Level {
 		}
 	}
 
-	public Shader shader = new Shader(new Color(0, 0, 0), 0.0);
+	public Shader shader = new Shader(new Color(100, 4, 2), 0.0, this);
 
+	//TODO: multiply time values by 60
 	public void render() {
 		Graphics g = Main.g;
 		g.drawImage(image, -GameState.camera.x, -GameState.camera.y, width, height, null);
@@ -91,10 +97,8 @@ public abstract class Level {
 		for (Entity e : entities) {
 			e.render();
 		}
-//		for (Door d : doors) {
-//			d.render();
-//		}
-		shader.update();
+		
+		shader.update(g);
 	}
 
 	public abstract void init();
