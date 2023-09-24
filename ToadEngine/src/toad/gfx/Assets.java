@@ -1,10 +1,11 @@
 package toad.gfx;
 
+import toad.game.Sound;
+
+import javax.xml.transform.Source;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.net.URL;
-import java.util.Objects;
 
 public class Assets {
 
@@ -24,11 +25,11 @@ public class Assets {
 	public static final Animation cr_u = new Animation(10, entities.getAnimation(128, 48, 16, 16, 3), true);
 	public static final Animation cr_dn = new Animation(10, entities.getAnimation(80, 48, 16, 16, 3), true);
 
-	public static final Audio cretinNoise = new Audio("/audio/silly_wabble.wav");
-	public static final Audio huh = new Audio("/audio/huh.wav");
-	public static final Audio heywazzup = new Audio("/audio/heywazzu.wav");
-	public static final Audio whaddayawant1 = new Audio("/audio/whaddayuwant.wav");
-	public static final Audio whaddayawant2 = new Audio("/audio/whaddayuwant2.wav");
+	public static final Sound cretinNoise = new Sound("ToadEngine/res/audio/silly_wabble.ogg", true);
+	public static final Sound huh = new Sound("ToadEngine/res/audio/huh.ogg", false);
+	public static final Sound heywazzup = new Sound("ToadEngine/res/audio/heywazzu.ogg", false);
+	public static final Sound whaddayawant1 = new Sound("ToadEngine/res/audio/whaddayuwant.ogg", false);
+	public static final Sound whaddayawant2 = new Sound("ToadEngine/res/audio/whaddayuwant2.ogg", false);
 
 	// Flora
 	public static BufferedImage getTree(int type) {

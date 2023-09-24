@@ -12,11 +12,18 @@ import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
+import org.lwjgl.openal.AL;
+import org.lwjgl.openal.ALC;
+import org.lwjgl.openal.ALCCapabilities;
+import org.lwjgl.openal.ALCapabilities;
 import toad.game.GameState;
 import toad.game.Main;
 import toad.game.entities.Entity;
 import toad.game.entities.Player;
 import toad.gfx.Shader;
+
+import static org.lwjgl.openal.ALC10.*;
+import static org.lwjgl.openal.ALC10.alcCreateContext;
 
 public abstract class Level {
 

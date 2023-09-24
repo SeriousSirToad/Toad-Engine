@@ -1,28 +1,24 @@
 package toad.game.entities.npcs;
 
-import java.io.IOException;
-import java.util.Random;
-
 import toad.game.GameState;
 import toad.game.entities.Mob;
 import toad.game.level.Door;
 import toad.game.level.Level;
 import toad.gfx.Assets;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 
 public class Cretin extends Mob {
 
-	Clip audio;
-	FloatControl gainControl;
-	FloatControl panControl;
 	boolean seriousmode;
+	int tooblar = 0;
 
 	public Cretin(Level level, int x, int y) {
 		super(level, x, y, Assets.cretin, Assets.cr_hz, Assets.cr_u, Assets.cr_dn);
-		audio = Assets.cretinNoise.getClip();
-		gainControl = (FloatControl) audio.getControl(FloatControl.Type.MASTER_GAIN);
-		panControl = (FloatControl) audio.getControl(FloatControl.Type.PAN);
+		sound = Assets.cretinNoise;
 	}
 
 	int cretinclock = 0;
@@ -44,6 +40,7 @@ public class Cretin extends Mob {
 			for (Door d : level.doors) {
 				if (x - 5 <= d.rect.x && x + 5 >= d.rect.x && collider.y >= d.rect.y) {
 					ya--;
+					System.out.println("Penis broken");
 					break penis;
 				}
 			}
@@ -60,37 +57,36 @@ public class Cretin extends Mob {
 			clockspeed = r.nextInt(60) + 1;
 		}
 		move(xa, ya);
-		if (this.level == GameState.player.getLevel() && audio != null) {
-			if (!audio.isActive()) {
-				audio.loop(Clip.LOOP_CONTINUOUSLY);
+		if (this.level == GameState.player.getLevel() && sound != null) {
+			if (!sound.isPlaying()) {
+				sound.play();
 			}
 			updateAudio();
 		} else {
-			if (audio != null && audio.isActive()) {
-				audio.stop();
+			if (sound != null && sound.isPlaying()) {
+				sound.stop();
 			}
 		}
 	}
 
 	protected void updateAudio() {
+		double distance = Math.sqrt(Math.pow(GameState.player.x - x, 2) + Math.pow(GameState.player.y - y, 2));
+		if (distance < 0)
+			distance = 0;
 
-		double distance = Math
-				.sqrt(Math.pow(GameState.player.x - this.x, 2) + Math.pow(GameState.player.y - this.y, 2));
 		float volume = (float) (1.0 - (distance / 100));
-
 		if (volume < 0)
 			volume = 0;
 		else if (volume > 1)
 			volume = 1.0f;
 
-		float pan = (this.x - GameState.player.x) / 100f;
+
+
+		float pan = (xf - GameState.player.xf) / 100f;
 		if (pan < -1)
 			pan = -1;
 		else if (pan > 1)
 			pan = 1;
-
-		gainControl.setValue(20f * (float) Math.log10(volume));
-		panControl.setValue(pan);
 	}
 
 	@Override

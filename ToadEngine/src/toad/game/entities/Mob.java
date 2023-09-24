@@ -8,6 +8,7 @@ import javax.sound.sampled.Clip;
 import toad.game.GameState;
 import toad.game.Item;
 import toad.game.Main;
+import toad.game.Sound;
 import toad.game.level.Level;
 import toad.gfx.Animation;
 
@@ -20,7 +21,7 @@ public abstract class Mob extends Entity {
 	protected String name;
 	protected ArrayList<Item> inventory = new ArrayList<>();
 	protected boolean isNPC = false;
-	protected Clip audio;
+	protected Sound sound;
 
 	public Mob(Level level, int x, int y, BufferedImage image, Animation hz, Animation up, Animation dn) {
 		super(level, x, y, image);
@@ -51,8 +52,8 @@ public abstract class Mob extends Entity {
 	}
 
 	protected void playClip() {
-		if (audio != null)
-			audio.start();
+		if (sound != null)
+			sound.play();
 	}
 
 	public void render() {

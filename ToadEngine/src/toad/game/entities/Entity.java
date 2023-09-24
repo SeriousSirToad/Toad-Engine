@@ -9,6 +9,7 @@ import javax.sound.sampled.Clip;
 
 import toad.game.GameState;
 import toad.game.Main;
+import toad.game.Sound;
 import toad.game.entities.npcs.Cretin;
 import toad.game.level.Level;
 import toad.gfx.Animation;
@@ -32,7 +33,7 @@ public abstract class Entity {
 	public Point colliderLoc;
 
 	Animation[] animations;
-	ArrayList<Clip> audio = new ArrayList<>();
+	protected Sound sound;
 
 	protected int movingDir = 0;
 

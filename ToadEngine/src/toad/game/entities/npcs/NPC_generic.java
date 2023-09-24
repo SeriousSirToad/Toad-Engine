@@ -8,6 +8,7 @@ import javax.sound.sampled.Clip;
 
 import toad.game.GameState;
 import toad.game.Main;
+import toad.game.Sound;
 import toad.game.entities.ActionZone;
 import toad.game.level.Level;
 import toad.gfx.Assets;
@@ -16,7 +17,7 @@ import toad.ui.DialogWindow;
 
 public class NPC_generic extends NPC {
 
-	ArrayList<Clip> noises = new ArrayList<>();
+	ArrayList<Sound> noises = new ArrayList<>();
 
 	public NPC_generic(Level level, int x, int y, BufferedImage image, int dir, String[] message) {
 		super(level, x, y, image, dir);
@@ -24,11 +25,11 @@ public class NPC_generic extends NPC {
 		npcwindow = new DialogWindow(name, message[0], 100, 80, "Close");
 		zone = new ActionZone(level, collider, npcwindow, Main.input.E);
 		zone.setInteractionTip(new InteractionTip("E", collider.x + 5, collider.y - 26, 6, 6));
-		noises.add(Assets.huh.getClip());
-		noises.add(Assets.heywazzup.getClip());
-		noises.add(Assets.whaddayawant1.getClip());
-		noises.add(Assets.whaddayawant2.getClip());
-		audio = noises.get(0);
+		noises.add(Assets.huh);
+		noises.add(Assets.heywazzup);
+		noises.add(Assets.whaddayawant1);
+		noises.add(Assets.whaddayawant2);
+		sound = noises.get(0);
 	}
 
 	int iteration = 0;
@@ -38,12 +39,13 @@ public class NPC_generic extends NPC {
 	public void update() {
 		if (collider.intersects(GameState.player.collider)) {
 			if (!audiobool) {
+				System.out.println("play sound");
 				audiobool = true;
-				audio = noises.get((int)(Math.random() * 3.49));
-				audio.loop(0);
+				sound = noises.get((int)(Math.random() * 3.49));
+				sound.play();
 			}
 		} else {
-			audio.setFramePosition(0);
+			sound.stop();
 			audiobool = false;
 		}
 	}

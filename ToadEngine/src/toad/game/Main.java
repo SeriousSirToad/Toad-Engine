@@ -10,10 +10,16 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import org.lwjgl.openal.AL;
+import org.lwjgl.openal.ALC;
+import org.lwjgl.openal.ALCCapabilities;
+import org.lwjgl.openal.ALCapabilities;
 import toad.dev.DevOptions;
 import toad.gfx.Animation;
 import toad.io.InputHandler;
 import toad.ui.InGameUI;
+
+import static org.lwjgl.openal.ALC10.*;
 
 public class Main extends Canvas implements Runnable {
 
@@ -30,6 +36,11 @@ public class Main extends Canvas implements Runnable {
 	public JFrame frame = new JFrame();
 	static Dimension gameDimension;
 	public static InputHandler input;
+
+	public static long audioContext;
+	public static long audioDevice;
+
+	private String defaultDevice = alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER);
 
 	public static boolean devOptions = true;
 	public DevOptions devWindow;
@@ -59,6 +70,17 @@ public class Main extends Canvas implements Runnable {
 
 		menu = new Menu();
 
+		int[] attributes = {0};
+		audioDevice = alcOpenDevice(defaultDevice);
+		audioContext = alcCreateContext(audioDevice, attributes);
+		alcMakeContextCurrent(audioContext);
+
+		ALCCapabilities alcCapabilities = ALC.createCapabilities(audioDevice);
+		ALCapabilities alCapabilities = AL.createCapabilities(alcCapabilities);
+
+		if (!alCapabilities.OpenAL10) {
+			System.out.println("Audio library not supported");
+		}
 	}
 
 	String playerCoords;
@@ -120,6 +142,10 @@ public class Main extends Canvas implements Runnable {
 			}
 
 		}
+
+		// Cleaning up audio
+		alcDestroyContext(audioContext);
+		alcCloseDevice(audioDevice);
 	}
 
 	boolean stateInit = false;
