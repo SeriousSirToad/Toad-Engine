@@ -1,5 +1,7 @@
 package toad.game;
 
+import org.lwjgl.openal.AL10;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +27,7 @@ public class Sound {
         File file = new File(audioPath);
         String filepath = file.getAbsolutePath();
 
-        // Working with the stack (reserving memory) in Java for some reason im just watching youtube
+        // Reserving memory for audio info
         stackPush();
         IntBuffer channelsBuffer = stackMallocInt(1);
         stackPush();
@@ -45,7 +47,7 @@ public class Sound {
         int channels = channelsBuffer.get();
         int sampleRate = sampleRateBuffer.get();
 
-        //Free
+        // Free
         stackPop();
         stackPop();
 
@@ -59,12 +61,11 @@ public class Sound {
         bufferId = alGenBuffers();
         alBufferData(bufferId, format, rawAudioBuffer, sampleRate);
 
-        // Generate the audio source
         sourceId = alGenSources();
 
         alSourcei(sourceId, AL_BUFFER, bufferId);
         alSourcei(sourceId, AL_LOOPING, loops ? 1 : 0);
-        alSourcei(sourceId, AL_POSITION, 0); // AL_POSITION is current playback position on audio buffer
+        alSourcei(sourceId, AL_POSITION, 0);
         alSourcef(sourceId, AL_GAIN, 0.3f);
 
         // free audiobuffer
@@ -82,7 +83,7 @@ public class Sound {
 
         if (state == AL_STOPPED) {
             playing = false;
-            alSourcei(sourceId, AL_POSITION, 0);
+            alSourcei(sourceId, AL_POSITION, 1);
         }
 
         if (!playing) {
@@ -106,5 +107,8 @@ public class Sound {
         return playing;
     }
 
-
+    public void setSourcePos(float x, float y, float gain) {
+        alSource3f(sourceId, AL_POSITION, x, y, 0);
+        alSourcef(sourceId, AL_GAIN, gain);
+    }
 }

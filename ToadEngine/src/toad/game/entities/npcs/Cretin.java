@@ -61,32 +61,20 @@ public class Cretin extends Mob {
 			if (!sound.isPlaying()) {
 				sound.play();
 			}
-			updateAudio();
+
+			double distance = Math.sqrt(Math.pow(GameState.player.x - x, 2) + Math.pow(GameState.player.y - y, 2));
+			if (distance < 0) {
+				distance = 0;
+			}
+
+			float volume = (float) (0.5 - (distance / 200));
+
+			sound.setSourcePos(xf, yf, volume);
 		} else {
 			if (sound != null && sound.isPlaying()) {
 				sound.stop();
 			}
 		}
-	}
-
-	protected void updateAudio() {
-		double distance = Math.sqrt(Math.pow(GameState.player.x - x, 2) + Math.pow(GameState.player.y - y, 2));
-		if (distance < 0)
-			distance = 0;
-
-		float volume = (float) (1.0 - (distance / 100));
-		if (volume < 0)
-			volume = 0;
-		else if (volume > 1)
-			volume = 1.0f;
-
-
-
-		float pan = (xf - GameState.player.xf) / 100f;
-		if (pan < -1)
-			pan = -1;
-		else if (pan > 1)
-			pan = 1;
 	}
 
 	@Override

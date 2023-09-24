@@ -1,9 +1,13 @@
 package toad.game.entities;
 
 import toad.game.Main;
+import toad.game.Sound;
 import toad.game.level.Level;
 import toad.gfx.Assets;
 import toad.io.InputHandler;
+
+import static org.lwjgl.openal.AL10.AL_POSITION;
+import static org.lwjgl.openal.AL10.alListener3f;
 
 public class Player extends Mob {
 
@@ -34,7 +38,7 @@ public class Player extends Mob {
 		}
 
 		move(xa, ya);
+		alListener3f(AL_POSITION, xf, yf, 0); // player is the listener
 	}
-
 
 }

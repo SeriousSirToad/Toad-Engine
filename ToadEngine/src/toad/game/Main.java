@@ -10,10 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import org.lwjgl.openal.AL;
-import org.lwjgl.openal.ALC;
-import org.lwjgl.openal.ALCCapabilities;
-import org.lwjgl.openal.ALCapabilities;
+import org.lwjgl.openal.*;
 import toad.dev.DevOptions;
 import toad.gfx.Animation;
 import toad.io.InputHandler;
@@ -77,6 +74,8 @@ public class Main extends Canvas implements Runnable {
 
 		ALCCapabilities alcCapabilities = ALC.createCapabilities(audioDevice);
 		ALCapabilities alCapabilities = AL.createCapabilities(alcCapabilities);
+
+		AL10.alDistanceModel(AL11.AL_LINEAR_DISTANCE_CLAMPED);
 
 		if (!alCapabilities.OpenAL10) {
 			System.out.println("Audio library not supported");
